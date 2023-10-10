@@ -1,0 +1,10 @@
+.search-input{
+    width: 487px;
+    height: 40px;
+}
+
+@media (max-width:1200px) {
+    .search-input{
+        width: 290px;
+    }
+}
