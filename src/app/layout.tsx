@@ -4,6 +4,7 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/common/header/header'
 import Footer from '@/components/common/footer/footer'
 import { Layout, Space } from 'antd';
+import Head from 'next/head'
 
 const inter = Inter({ subsets: ['latin'] })
 

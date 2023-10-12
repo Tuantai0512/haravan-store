@@ -1,0 +1,42 @@
+.banner{
+    margin-top: 1px;
+    margin-bottom: 0;
+    padding: 15px 0;
+    background: #ffffff;
+    width: 100%;
+    &-menu{
+        border-radius: 6px;
+        box-shadow: 0 0 3px 0 #dee2e6;
+        width: 25%;
+        ul li:last-child a{
+            border-bottom: 0;
+        }
+        &-item{
+            font-size: 15px;
+            text-transform: uppercase;
+            font-weight: 600;
+            display: block;
+            padding: 12px 18px;
+            border-bottom: 1px solid #00000005;
+            border-left: 3px solid transparent;
+            &:hover{
+                border-left-color: #0c5edb;
+                background-color: #f4f6f8;
+                color: #000;
+            }
+        }
+    }
+}
+
+.swiper-button{
+    &-prev{
+        &::after{
+            font-size: 15px;
+        }
+    }
+    &-next{
+        &::after{
+            font-size: 15px;
+        }
+    }
+}

@@ -1,11 +1,12 @@
 import Image from 'next/image'
+import { Banner } from './home'
 
 export default function Home() {
   return (
-    <div className='container'>
-      <section>
-        Content
-      </section>
-    </div>
+    <>
+      <Banner/>
+      <div className='container'>
+      </div>
+    </>
   )
 }

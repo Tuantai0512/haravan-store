@@ -18,22 +18,53 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
-header{
+header {
   background-color: #0745aa;
 }
 
-header .ant-input-group-addon button{
+header .ant-input-group-addon button {
   background-color: #fff;
   border-left: 0;
 }
+
+.swiper:hover .swiper-button-prev,
+.swiper:hover .swiper-button-next {
+  display: flex !important;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  width: 30px !important;
+  height: 30px !important;
+  background-color: #fff;
+  border-radius: 50%;
+  display: none !important;
+}
+
+.swiper-button-prev::after,
+.swiper-button-next::after {
+  font-size: 15px !important;
+  color: #000;
+}
+
+.swiper-button-prev:hover,
+.swiper-button-next:hover {
+  background-color: #0745aa;
+  border: 1px solid #fff;
+  transition: all 0.1s linear;
+}
+
+.swiper-button-prev:hover::after,
+.swiper-button-next:hover::after {
+  color: #fff;
+}
+
+/* Responsive */
 
 @media (min-width: 768px) {
   .container {
@@ -53,8 +84,4 @@ header .ant-input-group-addon button{
   }
 }
 
-
-
-
-
-
+/* Keyframes */
