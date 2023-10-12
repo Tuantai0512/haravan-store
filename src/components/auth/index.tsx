@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { SmileOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';

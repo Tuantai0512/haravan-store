@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Row, Col } from 'antd';
 import style from './style.module.scss'
 import Image from 'next/image';

@@ -1,5 +1,4 @@
 'use client'
-import * as React from 'react';
 import { DropdownMenu } from '@/components/dropdown-menu';
 import Image from 'next/image';
 import logo from '../../../../public/img/logo.webp'

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Input, Space } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import style from './style.module.scss'

@@ -1,4 +1,3 @@
-import * as React from 'react';
 import FooterDesktop from './footer-desktop';
 
 export interface IFooterProps {

@@ -1,5 +1,4 @@
 'use client'
-import * as React from 'react';
 import style from './style.module.scss'
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from 'swiper/react';
