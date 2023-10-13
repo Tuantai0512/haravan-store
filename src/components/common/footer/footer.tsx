@@ -5,10 +5,8 @@ export interface IFooterProps {
 
 export default function Footer (props: IFooterProps) {
   return (
-    <footer>
-      <div className='container'>
+    <footer>      
         <FooterDesktop/>
-      </div>
     </footer>
   );
 }

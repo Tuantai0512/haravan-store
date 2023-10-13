@@ -9,7 +9,7 @@ import style from './style.module.scss'
 
 export default function HeaderDesktop () {
   return (
-    <header style={{ height: '73px' }} className='text-white hidden lg:flex items-center'>
+    <header style={{ height: '73px', top: 0, zIndex: 2 }} className='text-white hidden lg:flex items-center sticky'>
       <div className='container flex items-center'>
         <DropdownMenu/>
         <Image 

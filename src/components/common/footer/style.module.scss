@@ -29,3 +29,12 @@
     text-decoration: underline;
     font-size: 16px;
 }
+
+.copyright{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-top: 1px solid #00000010;
+    padding: 12px 0;
+    font-size: 13px;
+}

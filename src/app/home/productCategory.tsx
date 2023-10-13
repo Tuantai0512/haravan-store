@@ -5,14 +5,15 @@ import productImg from '../../../public/img/product-1.webp'
 import cartBtn from '../../../public/img/cart-product-icon_prev_ui.png'
 
 export interface IProductCategoryProps {
+    category: string;
 }
 
 export function ProductCategory(props: IProductCategoryProps) {
     return (
-        <div>
+        <div className='py-8'>
             <div className='my-8 flex justify-center'>
                 <h2 className={style['product-title']}>
-                    <Link href={'#'}>Combo Haravan</Link>
+                    <Link href={'#'}>{props.category}</Link>
                 </h2>
             </div>
             <div>
