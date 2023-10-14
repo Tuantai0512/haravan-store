@@ -24,7 +24,7 @@ export default function RootLayout({
         <Space direction="vertical" style={{ width: '100%' }} size={[0, 48]}>
           <Layout style={{ minHeight: '100vh' }}>
             <Header/>
-              <main className="flex min-h-screen flex-col items-center">
+              <main className="flex min-h-screen flex-col">
                 {children}
               </main>
             <Footer/>

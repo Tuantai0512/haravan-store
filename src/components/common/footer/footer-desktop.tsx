@@ -34,7 +34,7 @@ export default function FooterDesktop() {
                         <h4 className={style['title-footer']}>Hỗ trợ khách hàng</h4>
                         <ul className={style['footer-policy-list']}>
                             <li>
-                                <Link href={'#'}>Điều khoản dịch vụ</Link>
+                                <Link href={'/pages/dieu-khoan-dich-vu'}>Điều khoản dịch vụ</Link>
                             </li>
                             <li>
                                 <Link href={'#'}>Chính sách giao hàng</Link>
