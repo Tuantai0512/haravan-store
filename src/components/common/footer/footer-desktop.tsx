@@ -37,16 +37,16 @@ export default function FooterDesktop() {
                                 <Link href={'/pages/dieu-khoan-dich-vu'}>Điều khoản dịch vụ</Link>
                             </li>
                             <li>
-                                <Link href={'#'}>Chính sách giao hàng</Link>
+                                <Link href={'/pages/chinh-sach-giao-hang'}>Chính sách giao hàng</Link>
                             </li>
                             <li>
-                                <Link href={'#'}>Chính sách đổi trả</Link>
+                                <Link href={'/pages/chinh-sach-doi-tra'}>Chính sách đổi trả</Link>
                             </li>
                             <li>
-                                <Link href={'#'}>Chính sách bảo mật thông tin</Link>
+                                <Link href={'/pages/chinh-sach-bao-mat'}>Chính sách bảo mật thông tin</Link>
                             </li>
                             <li>
-                                <Link href={'#'}>Liên hệ</Link>
+                                <Link href={'/pages/lien-he'}>Liên hệ</Link>
                             </li>
                         </ul>
                     </Col>

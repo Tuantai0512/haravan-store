@@ -69,16 +69,16 @@ export default function App() {
                   <Link href={'/pages/dieu-khoan-dich-vu'} className='block py-3'>Điều khoản dịch vụ</Link>
                 </li>
                 <li className='border-b border-dashed'>
-                  <Link href={'#'} className='block py-3'>Chính sách giao hàng</Link>
+                  <Link href={'/pages/chinh-sach-giao-hang'} className='block py-3'>Chính sách giao hàng</Link>
                 </li>
                 <li className='border-b border-dashed'>
-                  <Link href={'#'} className='block py-3'>Chính sách đổi trả</Link>
+                  <Link href={'/pages/chinh-sach-doi-tra'} className='block py-3'>Chính sách đổi trả</Link>
                 </li>
                 <li className='border-b border-dashed'>
-                  <Link href={'#'} className='block py-3'>Chính sách bảo mật thông tin</Link>
+                  <Link href={'/pages/chinh-sach-bao-mat'} className='block py-3'>Chính sách bảo mật thông tin</Link>
                 </li>
                 <li>
-                  <Link href={'#'} className='block py-3'>Liên hệ</Link>
+                  <Link href={'/pages/lien-he'} className='block py-3'>Liên hệ</Link>
                 </li>
               </ul>
             </div>
