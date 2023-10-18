@@ -6,18 +6,21 @@ import { SearchComponent } from '@/components/search';
 import { Auth } from '@/components/auth';
 import { Cart } from '@/components/cart';
 import style from './style.module.scss'
+import Link from 'next/link';
 
 export default function HeaderDesktop () {
   return (
     <header style={{ height: '73px', top: 0, zIndex: 2 }} className='text-white hidden lg:flex items-center sticky'>
       <div className='container flex items-center'>
         <DropdownMenu/>
-        <Image 
-            src={logo}
-            width={185} 
-            alt='logo'
-            className='px-4'
-        />
+        <Link href={'/'}>
+          <Image 
+              src={logo}
+              width={185} 
+              alt='logo'
+              className='px-4'
+          />
+        </Link>
         <SearchComponent />
         <div className='px-4 flex'>
           <div className='flex items-center'>

@@ -1,40 +1,81 @@
 import { DownOutlined, SmileOutlined, MenuOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
+import Link from 'next/link';
 import style from './style.module.scss'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHouse, faPhoneVolume, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
 
 const items: MenuProps['items'] = [
   {
     key: '1',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-        1st menu item
-      </a>
+      <Link
+        href="/"
+        className=''
+      >
+        <FontAwesomeIcon icon={faHouse} className='text-2xl'/>
+      </Link>
     ),
+    className:'!px-3 !py-2 border-b !mb-2',
   },
   {
     key: '2',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-        2nd menu item (disabled)
-      </a>
+      <Link href="#" className='uppercase font-bold py-2.5 text-xs'>
+        Giới thiệu
+      </Link>
     ),
-    icon: <SmileOutlined />,
-    disabled: true,
   },
   {
     key: '3',
     label: (
-      <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-        3rd menu item (disabled)
-      </a>
+      <Link href="#" className='uppercase font-bold py-2.5 text-xs'>
+        Combo haravan
+      </Link>
     ),
-    disabled: true,
   },
   {
     key: '4',
-    danger: true,
-    label: 'a danger item',
+    label: (
+      <Link href="#" className='uppercase font-bold py-2.5 text-xs'>
+        Thiết bị
+      </Link>
+    ),
+  },
+  {
+    key: '5',
+    label: (
+      <Link href="#" className='uppercase font-bold py-2.5 text-xs'>
+        Giấy in & tem in
+      </Link>
+    ),
+  },
+  {
+    key: '6',
+    label: (
+      <p className='uppercase pt-5 pb-2 text-xs'>
+        Tư vấn miễn phí
+      </p>
+    ),
+  },
+  {
+    key: '7',
+    label: (
+      <Link href="tel:0916964202" className='uppercase py-2 text-xs'>
+        <FontAwesomeIcon icon={faPhoneVolume} className='text-base mr-3'/>
+        0916.964.202
+      </Link>
+    ),
+  },
+  {
+    key: '8',
+    label: (
+      <Link href="mailto:store@haravan.com" className='py-2 text-xs'>
+        <FontAwesomeIcon icon={faEnvelopeOpenText} className='text-base mr-3'/>
+        store@haravan.com
+      </Link>
+    ),
   },
 ];
 
