@@ -39,6 +39,33 @@ header {
   background-color: transparent !important;
 }
 
+.ant-menu-submenu-title{
+  padding: 0 !important;
+  margin: 0 !important;
+  height: 30px !important;
+}
+
+.ant-menu{
+  background-color: transparent !important;
+}
+
+.ant-menu-item{
+  height: 30px !important;
+}
+
+.ant-menu li{
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.ant-menu li:hover{
+  background-color: transparent !important;
+}
+
+.ant-menu-submenu-title:hover{
+  background-color: transparent !important;
+}
+
 header .ant-input-group-addon button {
   background-color: #fff;
   border-left: 0;

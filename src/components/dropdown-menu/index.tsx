@@ -1,10 +1,40 @@
-import { DownOutlined, SmileOutlined, MenuOutlined } from '@ant-design/icons';
+import { useState } from 'react'
 import type { MenuProps } from 'antd';
-import { Dropdown, Space } from 'antd';
+import { Dropdown, Space, Menu } from 'antd';
 import Link from 'next/link';
 import style from './style.module.scss'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHouse, faPhoneVolume, faEnvelopeOpenText } from '@fortawesome/free-solid-svg-icons';
+
+type MenuItem = Required<MenuProps>['items'][number];
+
+function getItem(
+  label: React.ReactElement,
+  key: React.Key,
+  icon?: React.ReactNode,
+  children?: MenuItem[],
+  type?: 'group',
+): MenuItem {
+  return {
+    key,
+    icon,
+    children,
+    label,
+    type,
+  } as MenuItem;
+}
+
+
+const subItems: MenuProps['items'] = [
+  getItem(<Link href={'google.com'} className='uppercase font-bold py-2.5 text-xs '>Thiết bị</Link>, 'sub4', null, [
+    getItem(<Link href={'#'} className='text-xs mx-3'>Xem tất cả "<b>Thiết bị</b>"</Link>, '9'),
+    getItem(<Link href={'#'} className='text-xs mx-3'>Máy quét mã vạch</Link>, '10'),
+    getItem(<Link href={'#'} className='text-xs mx-3'>Máy in hóa đơn</Link>, '11'),
+    getItem(<Link href={'#'} className='text-xs mx-3'>Máy in mã vạch</Link>, '12'),
+    getItem(<Link href={'#'} className='text-xs mx-3'>Máy POS bán hàng</Link>, '13'),
+    getItem(<Link href={'#'} className='text-xs mx-3'>Giấy in</Link>, '14'),
+  ])
+];
 
 const items: MenuProps['items'] = [
   {
@@ -14,10 +44,10 @@ const items: MenuProps['items'] = [
         href="/"
         className=''
       >
-        <FontAwesomeIcon icon={faHouse} className='text-2xl'/>
+        <FontAwesomeIcon icon={faHouse} className='text-2xl' />
       </Link>
     ),
-    className:'!px-3 !py-2 border-b !mb-2',
+    className: '!px-3 !py-2 border-b !mb-2',
   },
   {
     key: '2',
@@ -38,9 +68,11 @@ const items: MenuProps['items'] = [
   {
     key: '4',
     label: (
-      <Link href="#" className='uppercase font-bold py-2.5 text-xs'>
-        Thiết bị
-      </Link>
+      <Menu
+        style={{ width: 256 }}
+        mode="inline"
+        items={subItems}
+      />
     ),
   },
   {
@@ -63,7 +95,7 @@ const items: MenuProps['items'] = [
     key: '7',
     label: (
       <Link href="tel:0916964202" className='uppercase py-2 text-xs'>
-        <FontAwesomeIcon icon={faPhoneVolume} className='text-base mr-3'/>
+        <FontAwesomeIcon icon={faPhoneVolume} className='text-base mr-3' />
         0916.964.202
       </Link>
     ),
@@ -72,7 +104,7 @@ const items: MenuProps['items'] = [
     key: '8',
     label: (
       <Link href="mailto:store@haravan.com" className='py-2 text-xs'>
-        <FontAwesomeIcon icon={faEnvelopeOpenText} className='text-base mr-3'/>
+        <FontAwesomeIcon icon={faEnvelopeOpenText} className='text-base mr-3' />
         store@haravan.com
       </Link>
     ),
@@ -80,8 +112,21 @@ const items: MenuProps['items'] = [
 ];
 
 export function DropdownMenu() {
+
+  const [open, setOpen] = useState(false);
+
+  const handleOpenChange = (flag: boolean) => {
+    setOpen(flag);
+  };
+
   return (
-    <Dropdown menu={{ items }} className='px-4'>
+    <Dropdown
+      menu={{ items }}
+      className='px-4'
+      /* trigger={['click']} */
+      onOpenChange={handleOpenChange}
+      open={open}
+    >
       <a onClick={(e) => e.preventDefault()}>
         <Space direction='vertical' align='center' size={0}>
           <span className={style['box-icon']}>
