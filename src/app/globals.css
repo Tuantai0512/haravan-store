@@ -39,6 +39,20 @@ header {
   background-color: transparent !important;
 }
 
+.form-input::placeholder{
+  color: #fff;
+}
+
+.form-label{
+  transition: transform 0.2s;
+}
+
+.form-input:focus + .form-label,
+.form-input:not(:placeholder-shown) + .form-label
+{
+  transform: translateY(-12px) scale(0.8);
+}
+
 .ant-menu-submenu-title{
   padding: 0 !important;
   margin: 0 !important;
@@ -69,6 +83,17 @@ header {
 header .ant-input-group-addon button {
   background-color: #fff;
   border-left: 0;
+}
+
+#cartBtn{
+  background-color: red;
+  border: 1px solid red;
+  transition: all .2s linear;
+}
+
+#cartBtn:hover{
+  background-color: #fff;
+  color: red;
 }
 
 .swiper:hover .swiper-button-prev,

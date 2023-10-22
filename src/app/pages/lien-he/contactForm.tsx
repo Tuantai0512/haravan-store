@@ -15,7 +15,7 @@ export default function ContactForm() {
     const { errors } = formState;
 
     const FormSubmit = (data: IContactForm) => {
-        console.log('Data submit: ', data)
+        console.log('Contact submit: ', data)
     }
 
     return (

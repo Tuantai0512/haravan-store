@@ -126,6 +126,7 @@ export function DropdownMenu() {
       /* trigger={['click']} */
       onOpenChange={handleOpenChange}
       open={open}
+      placement="bottomLeft" arrow
     >
       <a onClick={(e) => e.preventDefault()}>
         <Space direction='vertical' align='center' size={0}>

@@ -2,45 +2,119 @@ import { SmileOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
 import style from './style.module.scss'
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
 
-const items: MenuProps['items'] = [
-    {
-        key: '1',
-        label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                1st menu item
-            </a>
-        ),
-    },
-    {
-        key: '2',
-        label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                2nd menu item (disabled)
-            </a>
-        ),
-        icon: <SmileOutlined />,
-        disabled: true,
-    },
-    {
-        key: '3',
-        label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-                3rd menu item (disabled)
-            </a>
-        ),
-        disabled: true,
-    },
-    {
-        key: '4',
-        danger: true,
-        label: 'a danger item',
-    },
-];
+interface ILoginForm {
+    email: string;
+    password: string
+}
 
 export function Auth() {
+
+    const form = useForm<ILoginForm>();
+    const { register, handleSubmit, formState } = form;
+    const { errors } = formState;
+
+    const FormSubmit = (data: ILoginForm) => {
+        console.log('Login submit: ', data)
+    }
+
     return (
-        <Dropdown menu={{ items }} className='ml-4 pl-4 border-l border-slate-200/[.1]'>
+        <Dropdown
+            className='ml-4 pl-4 border-l border-slate-200/[.1]'
+            dropdownRender={() => (
+                <div className='bg-white w-80 text-center p-5'>
+                    <div className='pb-2.5 border-b'>
+                        <p className='uppercase text-lg font-medium'>Đăng nhập tài khoản</p>
+                        <p className='text-sm text-gray-500'>Nhập email và mật khẩu của bạn:</p>
+                    </div>
+                    <form className="pt-5" onSubmit={handleSubmit(FormSubmit)}>
+                        <div className='relative mb-3'>
+                            <input
+                                type='text'
+                                className='form-input w-full border pt-3.5 px-2.5 pb-1'
+                                placeholder='email'
+                                {...register("email", {
+                                    required: 'Bạn chưa nhập email!',
+                                    pattern: {
+                                        value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                                        message: "Bạn nhập sai cú pháp email"
+                                    }
+                                })}
+                            />
+                            <label
+                                className='form-label absolute top-0 leading-10 left-2.5 pointer-events-none origin-left'>Email</label>
+                        </div>
+                        {errors.email && (
+                            <label className='text-red-500 mb-2'>{errors.email.message}</label>
+                        )}
+                        <div className='relative mb-3'>
+                            <input
+                                type='password'
+                                className='form-input w-full border pt-3.5 px-2.5 pb-1'
+                                placeholder='mật khẩu'
+                                {...register("password", {
+                                    required: 'Bạn chưa nhập mật khẩu!',
+                                    minLength: {
+                                        value: 8,
+                                        message: 'Mật khẩu ít nhất phải 8 ký tự!'
+                                    },
+                                    pattern: {
+                                        value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/i,
+                                        message: "Mật khẩu ít nhất phải có chữ hoa, chữ thường và ký tự đặc biệt"
+                                    }
+                                })}
+                            />
+                            <label
+                                className='form-label absolute top-0 leading-10 left-2.5 pointer-events-none origin-left'>Mật khẩu</label>
+                        </div>
+                        {errors.password && (
+                            <label className='text-red-500 mb-2'>{errors.password.message}</label>
+                        )}
+                        <div className='text-left text-xs mb-3'>
+                            This site is protected by reCAPTCHA and the Google
+                            <a
+                                href='https://policies.google.com/privacy'
+                                style={{ color: '#2962ff' }}
+                                target='_blank'
+                                rel="noopener noreferrer"
+                            >  Privacy Policy </a>
+                            and
+                            <a
+                                href='https://policies.google.com/terms'
+                                style={{ color: '#2962ff' }}
+                                target='_blank'
+                                rel="noopener noreferrer"
+                            >  Terms of Service </a>
+                            apply.
+                        </div>
+                        <button
+                            style={{ backgroundColor: '#0c5edb' }}
+                            className='uppercase w-full py-2.5 text-white mb-3'
+                        >Đăng nhập</button>
+                        <p className='mb-1 text-left text-xs'>Khách hàng mới?
+                            <Link
+                                href='#'
+                                style={{ color: '#2962ff' }}
+                                target='_blank'
+                                rel="noopener noreferrer"
+                            >  Tạo tài khoản </Link>
+                        </p>
+                        <p className='mb-2 text-left text-xs'>Quên mật khẩu?
+                            <Link
+                                href='#'
+                                style={{ color: '#2962ff' }}
+                                target='_blank'
+                                rel="noopener noreferrer"
+                            >  Khôi phục mật khẩu </Link>
+                        </p>
+                    </form>
+                </div>
+            )}
+            /* trigger={['click']} */
+            placement="bottom" arrow
+        >
             <a onClick={(e) => e.preventDefault()}>
                 <Space direction='vertical' align='center' size={0}>
                     <span className={style['box-icon']}>

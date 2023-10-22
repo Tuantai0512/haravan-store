@@ -1,46 +1,36 @@
-import { SmileOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
 import { Dropdown, Space } from 'antd';
 import style from './style.module.scss'
 
-const items: MenuProps['items'] = [
-    {
-        key: '1',
-        label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.antgroup.com">
-                1st menu item
-            </a>
-        ),
-    },
-    {
-        key: '2',
-        label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.aliyun.com">
-                2nd menu item (disabled)
-            </a>
-        ),
-        icon: <SmileOutlined />,
-        disabled: true,
-    },
-    {
-        key: '3',
-        label: (
-            <a target="_blank" rel="noopener noreferrer" href="https://www.luohanacademy.com">
-                3rd menu item (disabled)
-            </a>
-        ),
-        disabled: true,
-    },
-    {
-        key: '4',
-        danger: true,
-        label: 'a danger item',
-    },
-];
-
 export function Cart() {
     return (
-        <Dropdown menu={{ items }} className='ml-4 pl-4 border-l border-slate-200/[.1]'>
+        <Dropdown
+            className='ml-4 pl-4 border-l border-slate-200/[.1]'
+            /* trigger={['click']} */
+            placement="bottomRight" arrow
+            dropdownRender={() => (
+                <div style={{ width: 420 }} className='bg-white p-5'>
+                    <h2 className='uppercase text-lg tracking-wide mb-2.5 text-center'>Giỏ hàng</h2>
+                    <div className='pt-2.5 pb-5 border-y mb-1'>
+                        <div className='flex flex-col items-center'>
+                            <svg style={{ stroke: '#0c5edb' }} width="50" height="50" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4"
+                                fill="none" fill-rule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
+                            <p className='text-gray-500 mt-1'>Hiện chưa có sản phẩm</p>
+                        </div>
+                    </div>
+                    <div>
+                        <div className='flex justify-between items-center'>
+                            <div className='uppercase py-2.5'>
+                                Tổng tiền:
+                            </div>
+                            <div style={{ color: 'red' }} className='font-bold text-base'>0₫</div>
+                        </div>
+                        <button
+                            id='cartBtn'
+                            className='text-white uppercase w-full py-2 rounded-sm'>Xem giỏ hàng</button>
+                    </div>
+                </div>
+            )}
+        >
             <a onClick={(e) => e.preventDefault()}>
                 <Space direction='vertical' align='center' size={0} className='relative'>
                     <span className={style['box-icon']}>
