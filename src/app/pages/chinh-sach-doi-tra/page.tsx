@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Breadcrumb } from 'antd';
 import Image from 'next/image';
 import banner from '../../../../public/img/page_banner_image.webp'
+import PrivacyMenu from '../privacy-menu-mobile';
 
 export const metadata: Metadata = {
   title: 'Chính sách đổi trả - Haravan Store Clone',
@@ -22,10 +23,10 @@ export default function App() {
               title: 'Chính sách bảo hành, đổi trả',
             },
           ]}
-          className='py-2'
+          className='px-2 lg:px-0 py-2'
         />
         <div className="grid grid-cols-4 gap-4">
-          <div className="col-span-3 bg-white p-4">
+          <div className="col-span-4 lg:col-span-3 bg-white p-4">
             <h1 className='text-3xl font-bold mb-6'>Chính sách bảo hành, đổi trả</h1>
             <h2 className='mb-2.5 text-lg'><strong>I/ CHÍNH SÁCH BẢO HÀNH</strong></h2>
             <p className='mb-2.5'>
@@ -57,7 +58,7 @@ export default function App() {
             <p className='mb-2.5'>Trong trường hợp Quý Khách hàng có ý kiến đóng góp/khiếu nại liên quan đến chất lượng sản phẩm, Quý Khách hàng vui lòng liên hệ đường dây chăm sóc khách hàng của chúng tôi.</p>
 
           </div>
-          <div className='flex flex-col gap-4'>
+          <div className='col-span-1 hidden lg:flex flex-col gap-4'>
             <div className='bg-white px-4 py-5'>
               <h3 className='mb-3 text-lg font-bold'>Thông tin cửa hàng</h3>
               <ul className='border-t'>
@@ -78,7 +79,7 @@ export default function App() {
                 </li>
               </ul>
             </div>
-            <div className='overflow-hidden'>
+            <div className='overflow-hidden mb-10'>
               <Image
                 src={banner}
                 alt='shop banner image'
@@ -87,6 +88,7 @@ export default function App() {
               />
             </div>
           </div>
+          <PrivacyMenu/>
         </div>
       </div>
     </div>

@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Breadcrumb } from 'antd';
 import Image from 'next/image';
 import banner from '../../../../public/img/page_banner_image.webp'
+import PrivacyMenu from '../privacy-menu-mobile';
+
 
 export const metadata: Metadata = {
   title: 'Điều khoản dịch vụ - Haravan Store Clone',
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 }
 
 export default function App() {
+
   return (
     <div>
       <div className="container">
@@ -22,10 +25,10 @@ export default function App() {
               title: 'Điều khoản dịch vụ',
             },
           ]}
-          className='py-2'
+          className='px-2 lg:px-0 py-2'
         />
         <div className="grid grid-cols-4 gap-4">
-          <div className="col-span-3 bg-white p-4">
+          <div className="col-span-4 lg:col-span-3 bg-white p-4">
             <h1 className='text-3xl font-bold mb-6'>Điều khoản dịch vụ</h1>
             <p className='mb-2.5'><strong>1. Giới thiệu</strong></p>
             <p className='mb-2.5'>Chào mừng quý khách hàng đến với Haravan Store</p>
@@ -61,7 +64,7 @@ export default function App() {
               <span className='ml-2'>Thanh toán online qua thẻ tín dụng, chuyển khoản.</span>
             </p>
           </div>
-          <div className='flex flex-col gap-4'>
+          <div className='col-span-1 hidden lg:flex flex-col gap-4'>
             <div className='bg-white px-4 py-5'>
               <h3 className='mb-3 text-lg font-bold'>Thông tin cửa hàng</h3>
               <ul className='border-t'>
@@ -82,7 +85,7 @@ export default function App() {
                 </li>
               </ul>
             </div>
-            <div className='overflow-hidden'>
+            <div className='overflow-hidden mb-10'>
               <Image
                 src={banner}
                 alt='shop banner image'
@@ -91,6 +94,7 @@ export default function App() {
               />
             </div>
           </div>
+          <PrivacyMenu/>
         </div>
       </div>
     </div>

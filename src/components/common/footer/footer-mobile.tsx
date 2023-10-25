@@ -113,18 +113,21 @@ export default function FooterMobile() {
                             <p>thông tin</p>
                         </div>
                         <FontAwesomeIcon
-                            icon={open ? faChevronUp : faChevronDown}
-                            style={{ width: 12 }}
+                            icon={faChevronDown}
+                            style={{ width: 12, transition: 'transform .4s' }}
+                            className={`origin-center ${open ? 'rotate-180' : ''} `}
                         />
                     </div>
                 </div>
             </div>
-            <Collapse isOpened={open}>
-                <CollapseAntd ghost items={items} />
-                <div className={style['copyright']}>
-                    <p>Copyright © 2023 Haravan Store. Powered by Haravan</p>
-                </div>
-            </Collapse>
+            <div className="lg:hidden">
+                <Collapse isOpened={open}>
+                    <CollapseAntd ghost items={items}/>
+                    <div className={style['copyright']}>
+                        <p>Copyright © 2023 Haravan Store. Powered by Haravan</p>
+                    </div>
+                </Collapse>
+            </div>
         </>
 
     );
