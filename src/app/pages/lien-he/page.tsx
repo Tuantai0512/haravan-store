@@ -27,22 +27,22 @@ export default function App() {
               title: 'Liên hệ',
             },
           ]}
-          className='py-2'
+          className='px-2 lg:px-0 py-2'
         />
         <Image src={banner} alt='contact banner' />
-        <div className='flex'>
-          <div className='w-2/5'>
+        <div className='flex flex-col lg:flex-row'>
+          <div className='lg:w-2/5 px-4 lg:px-0'>
             <h2 className='font-bold text-2xl my-7'>
               Thông tin liên hệ
             </h2>
             <div className='flex pr-4 mb-5'>
-              <div className='w-8 h-8 flex items-center justify-center bg-white rounded-full border'>
+              <div className='w-8 h-8 mr-4 lg:px-0 flex items-center justify-center bg-white rounded-full border'>
                 <FontAwesomeIcon
                   icon={faLocationDot}
                   className='w-3'
                 />
               </div>
-              <div className='w-4/5 px-4'>
+              <div className='w-4/5'>
                 <strong>Địa chỉ</strong>
                 <br />
                 <p>Tầng 6, tòa nhà Flemington, số 182, đường Lê Đại Hành, phường 15, quận 11, Tp. Hồ Chí Minh.</p>
@@ -88,7 +88,7 @@ export default function App() {
               </div>
             </div>
           </div>
-          <div className="w-3/5">
+          <div className="lg:w-3/5 px-4 lg:px-0">
             <h2 className='font-bold text-2xl my-7'>
               Gửi thắc mắc cho chúng tôi
             </h2>

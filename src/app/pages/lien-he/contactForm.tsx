@@ -32,8 +32,8 @@ export default function ContactForm() {
                 />
                 <label className="text-red-500">{errors.username?.message}</label>
             </div>
-            <div className='flex mb-3 gap-4'>
-                <div className="w-1/2">
+            <div className='flex flex-col lg:flex-row mb-3 gap-4'>
+                <div className="lg:w-1/2">
                     <input
                         type="text"
                         className='w-full py-2 px-5 mb-2'
@@ -49,7 +49,7 @@ export default function ContactForm() {
                     />
                     <label className="text-red-500">{errors.email?.message}</label>
                 </div>
-                <div className="w-1/2">
+                <div className="lg:w-1/2">
                     <input
                         type="text"
                         className='w-full py-2 px-5 mb-2'
@@ -97,7 +97,7 @@ export default function ContactForm() {
                 apply.
             </div>
             <button
-                className='px-7 py-3 text-white uppercase my-4'
+                className='px-7 py-3 text-white uppercase mt-4 mb-10'
                 style={{ backgroundColor: '#0c5edb' }}
             >
                 Gửi cho chúng tôi
