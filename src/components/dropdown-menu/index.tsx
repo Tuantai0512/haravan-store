@@ -52,7 +52,7 @@ const items: MenuProps['items'] = [
   {
     key: '2',
     label: (
-      <Link href="#" className='uppercase font-bold py-2.5 text-xs'>
+      <Link href="/pages/about-us" className='uppercase font-bold py-2.5 text-xs'>
         Giới thiệu
       </Link>
     ),
