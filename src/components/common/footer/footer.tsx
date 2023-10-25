@@ -1,12 +1,11 @@
 import FooterDesktop from './footer-desktop';
+import FooterMobile from './footer-mobile';
 
-export interface IFooterProps {
-}
-
-export default function Footer (props: IFooterProps) {
+export default function Footer () {
   return (
     <footer>      
         <FooterDesktop/>
+        <FooterMobile/>
     </footer>
   );
 }

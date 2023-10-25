@@ -2,7 +2,7 @@
 import { DropdownMenu } from '@/components/dropdown-menu';
 import Image from 'next/image';
 import logo from '../../../../public/img/logo.webp'
-import { SearchComponent } from '@/components/search';
+import { SearchDesktop } from '@/components/search/searchDesktop';
 import { Auth } from '@/components/auth';
 import { Cart } from '@/components/cart';
 import style from './style.module.scss'
@@ -21,7 +21,7 @@ export default function HeaderDesktop () {
               className='px-4'
           />
         </Link>
-        <SearchComponent />
+        <SearchDesktop />
         <div className='px-4 flex'>
           <div className='flex items-center'>
             <div className=''>

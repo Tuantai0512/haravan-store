@@ -54,10 +54,10 @@ export function LatestBlog(props: ILatestBlogProps) {
             <h2 className={style['hTitle']}>
                 <Link href={'#'}>Có thể bạn muốn biết?</Link>
             </h2>
-            <div className="grid grid-cols-3 gap-4 py-4">
+            <div className="lg:grid grid-cols-3 gap-4 py-4">
                 {BlogLatest.map((items, index) => {
                     return (
-                        <div className="flex gap-x-4 items-center" key={index}>
+                        <div className="flex gap-x-4 items-center mb-2" key={index}>
                             <div>
                                 <Link href={'#'} className="block w-max">
                                     <Image src={mayIn} alt="may-in" />

@@ -7,15 +7,17 @@ export interface ISearchProps {
 
 const { Search } = Input;
 
-export function SearchComponent (props: ISearchProps) {
+export function SearchDesktop(props: ISearchProps) {
+
   return (
     <Space direction="vertical" className='px-4'>
-        <Input 
-            size="large" 
-            placeholder="Nhập từ khóa cần tìm..." 
-            suffix={<SearchOutlined />}
-            className={style['search-input']}
-        />
+      <Input
+        size="large"
+        placeholder="Nhập từ khóa cần tìm..."
+        suffix={<SearchOutlined />}
+        className={style['search-input']}
+      />
     </Space>
+
   );
 }

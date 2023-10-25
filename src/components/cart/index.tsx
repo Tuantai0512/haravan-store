@@ -4,7 +4,7 @@ import style from './style.module.scss'
 export function Cart() {
     return (
         <Dropdown
-            className='ml-4 pl-4 border-l border-slate-200/[.1]'
+            className='ml-2 lg:ml-4 pl-2 lg:pl-4 border-l border-slate-200/[.1]'
             /* trigger={['click']} */
             placement="bottomRight" arrow
             dropdownRender={() => (
@@ -43,7 +43,7 @@ export function Cart() {
                     <div className={style['cart-counter']}>
                         <span>0</span>
                     </div>
-                    <p>Giỏ hàng</p>
+                    <p className='hidden lg:block'>Giỏ hàng</p>
                 </Space>
             </a>
         </Dropdown>

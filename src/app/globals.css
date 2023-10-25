@@ -96,6 +96,10 @@ header .ant-input-group-addon button {
   color: red;
 }
 
+.ReactCollapse--collapse {
+  transition: height 500ms;
+}
+
 .swiper:hover .swiper-button-prev,
 .swiper:hover .swiper-button-next {
   display: flex !important;
@@ -145,6 +149,27 @@ header .ant-input-group-addon button {
 @media (min-width: 1200px) {
   .container {
     width: 1170px;
+  }
+}
+
+@media (max-width: 992px) {
+  .ant-dropdown-menu{
+    width: 100vw;
+    height: calc(100vh - 65px);
+  }
+  .ant-collapse-expand-icon{
+    display: none !important;
+  }
+  .ant-collapse-item-active .ant-collapse-header-text,
+  .ant-collapse-item-active .ant-collapse-extra svg
+  {
+    font-weight: 700;
+  }
+  .ant-collapse-extra svg{
+    transition: transform .4s;
+  }
+  .ant-collapse-item-active .ant-collapse-extra svg{
+    transform: rotate(180deg);
   }
 }
 

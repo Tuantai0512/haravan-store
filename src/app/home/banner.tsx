@@ -51,7 +51,7 @@ export function Banner(props: IBannerProps) {
                         })}
                     </ul>
                 </div>
-                <div className="w-3/4 px-4">
+                <div className="w-full lg:w-3/4 px-4">
                     <Swiper
                         modules={[Navigation, Pagination, A11y, Autoplay, EffectFade]}
                         navigation

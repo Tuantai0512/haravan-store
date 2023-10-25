@@ -17,6 +17,9 @@
     position: absolute;
     top: 0;
     right: 8px;
+    @media (max-width:992px) {
+        right: -8px;
+    }
     span{
         font-size: 11px;
     }

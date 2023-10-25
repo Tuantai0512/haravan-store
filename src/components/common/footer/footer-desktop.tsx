@@ -7,7 +7,7 @@ import phoneIcon from '../../../../public/img/phone-icon.png'
 
 export default function FooterDesktop() {
     return (
-        <div className='pt-8 bg-white mt-8'>
+        <div className='pt-8 bg-white mt-8 hidden lg:block'>
             <div className='container pb-8'>
                 <Row justify="center" className='hidden lg:flex'>
                     <Col span={12}>

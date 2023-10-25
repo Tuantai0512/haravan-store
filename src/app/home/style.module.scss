@@ -10,6 +10,10 @@
         box-shadow: 0 0 3px 0 #dee2e6;
         width: 25%;
 
+        @media (max-width: 992px) {
+            display: none;
+        }
+
         ul li:last-child a {
             border-bottom: 0;
         }
@@ -48,6 +52,12 @@
 
         a:hover {
             color: #fff;
+        }
+
+        @media (max-width: 992px) {
+            min-width: 90%;
+            font-size: 16px;
+            text-transform: uppercase;
         }
     }
 
@@ -167,6 +177,9 @@
 .wrapper-latestBlog {
     background-color: #fff;
     padding: 20px 12px;
+    @media (max-width: 992px) {
+        margin-top: 20px;
+    }
     .hTitle {
         font-size: 18px;
         margin: 0 0 10px;
