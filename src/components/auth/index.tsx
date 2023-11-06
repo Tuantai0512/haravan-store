@@ -4,20 +4,35 @@ import { Dropdown, Space } from 'antd';
 import style from './style.module.scss'
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
+import { useState, useEffect } from 'react';
 
 interface ILoginForm {
     email: string;
     password: string
 }
 
+const login = async(url: string, loginData: ILoginForm) => {
+    let result = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(loginData)
+      });
+    let data = await result.json();
+    console.log(data); 
+}
+
 export function Auth() {
+
 
     const form = useForm<ILoginForm>();
     const { register, handleSubmit, formState } = form;
     const { errors } = formState;
 
     const FormSubmit = (data: ILoginForm) => {
-        console.log('Login submit: ', data)
+        login('http://localhost:3000/account/login',data)
     }
 
     return (
@@ -60,10 +75,6 @@ export function Auth() {
                                         value: 8,
                                         message: 'Mật khẩu ít nhất phải 8 ký tự!'
                                     },
-                                    pattern: {
-                                        value: /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/i,
-                                        message: "Mật khẩu ít nhất phải có chữ hoa, chữ thường và ký tự đặc biệt"
-                                    }
                                 })}
                             />
                             <label

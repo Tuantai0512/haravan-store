@@ -12,5 +12,6 @@ module.exports = {
             'window.jQuery': 'jquery'
         }))
     return config;
-  }
+  },
+  reactStrictMode: false,
 }
