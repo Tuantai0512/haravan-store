@@ -4,6 +4,9 @@ import HeaderMobile from './header-mobile';
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic'
 
+export interface IHeaderProps {
+  token: string | undefined
+}
 
 function Header() {
 

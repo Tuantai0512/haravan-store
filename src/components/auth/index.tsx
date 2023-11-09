@@ -1,38 +1,22 @@
-import { SmileOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
+'use client'
 import { Dropdown, Space } from 'antd';
 import style from './style.module.scss'
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { useState, useEffect } from 'react';
-
-interface ILoginForm {
-    email: string;
-    password: string
-}
-
-const login = async(url: string, loginData: ILoginForm) => {
-    let result = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(loginData)
-      });
-    let data = await result.json();
-    console.log(data); 
-}
+import { authAPI } from '@/api';
+import { ILoginForm } from '@/models';
 
 export function Auth() {
-
 
     const form = useForm<ILoginForm>();
     const { register, handleSubmit, formState } = form;
     const { errors } = formState;
-
-    const FormSubmit = (data: ILoginForm) => {
-        login('http://localhost:3000/account/login',data)
+    const FormSubmit = async(data: ILoginForm) => {
+        try{
+            await authAPI.login(data);
+        }catch(e){
+            console.log('Failed to login: ',e);
+        }
     }
 
     return (

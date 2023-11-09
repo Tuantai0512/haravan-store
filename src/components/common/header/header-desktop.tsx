@@ -8,6 +8,7 @@ import { Cart } from '@/components/cart';
 import style from './style.module.scss'
 import Link from 'next/link';
 
+
 export default function HeaderDesktop () {
   return (
     <header style={{ height: '73px', top: 0, zIndex: 2 }} className='text-white hidden lg:flex items-center sticky'>

@@ -23,7 +23,7 @@ export default function HeaderMobile () {
           </div>
           <div className="flex items-center mr-3">
             <SearchMobile />
-            <Auth/>
+            <Auth />
             <Cart/> 
           </div>
     </header>
