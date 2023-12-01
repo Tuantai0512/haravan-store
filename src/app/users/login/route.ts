@@ -21,7 +21,7 @@ export async function POST(request: Request) {
             name: 'access_token',
             value: token,
             httpOnly: true,
-            maxAge: 60000
+            maxAge: 60000 * 60 * 24 /* (1 day) */
         })
         return response
     }else{

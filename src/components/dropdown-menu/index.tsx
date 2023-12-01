@@ -123,7 +123,7 @@ export function DropdownMenu() {
     <Dropdown
       menu={{ items }}
       className='px-2 lg:px-4'
-      /* trigger={['click']} */
+      trigger={['click']}
       onOpenChange={handleOpenChange}
       open={open}
       placement="bottomLeft" arrow

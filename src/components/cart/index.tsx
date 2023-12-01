@@ -5,7 +5,7 @@ export function Cart() {
     return (
         <Dropdown
             className='ml-2 lg:ml-4 pl-2 lg:pl-4 border-l border-slate-200/[.1]'
-            /* trigger={['click']} */
+            trigger={['click']}
             placement="bottomRight" arrow
             dropdownRender={() => (
                 <div style={{ width: 420 }} className='bg-white p-5'>

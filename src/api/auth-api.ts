@@ -9,6 +9,6 @@ export const authAPI = {
         return axiosClient.get('/users/auth')
     },
     logout(){
-
+        return axiosClient.get('/users/logout')
     },
 }

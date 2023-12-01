@@ -107,7 +107,7 @@ export function Auth() {
                     </form>
                 </div>
             )}
-            /* trigger={['click']} */
+            trigger={['click']}
             placement="bottom" arrow
         >
             <a onClick={(e) => e.preventDefault()}>
