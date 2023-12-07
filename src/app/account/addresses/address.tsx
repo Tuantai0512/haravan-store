@@ -9,12 +9,11 @@ import { fetcher } from "@/utils/swr/fetcher";
 export default function Address() {
 
     const { profile} = useAuth();
-    const { data, error, isLoading } = useSWR(`/addresses/${profile?.id}`, fetcher, {
+    const { data, error, isLoading } = useSWR<IAddressData>(`/addresses/${profile?.id}`, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
     })
-
     if (isLoading) return <div>loading...</div>
 
     return (
