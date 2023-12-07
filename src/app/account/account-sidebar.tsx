@@ -1,13 +1,14 @@
 'use client'
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { authAPI } from '@/api';
+import { useAuth } from '@/hooks';
 
 export default function AccountSidebar() {
 
+    const { logout } = useAuth();
     const router = useRouter();
-    const logOut = async() => {
-        await authAPI.logout();
+    const logOut = async () => {
+        await logout();
         router.push('/account/login');
     }
 

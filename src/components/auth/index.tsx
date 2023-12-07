@@ -4,16 +4,17 @@ import style from './style.module.scss'
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
 import { authAPI } from '@/api';
-import { ILoginForm } from '@/models';
+import { useAuth } from '@/hooks';
 
 export function Auth() {
 
+    const {login} = useAuth();
     const form = useForm<ILoginForm>();
     const { register, handleSubmit, formState } = form;
     const { errors } = formState;
     const FormSubmit = async(data: ILoginForm) => {
         try{
-            await authAPI.login(data);
+            await login(data);
         }catch(e){
             console.log('Failed to login: ',e);
         }

@@ -1,4 +1,3 @@
-import { ILoginForm } from "@/models/auth";
 import axiosClient from "./axios-client";
 
 export const authAPI = {

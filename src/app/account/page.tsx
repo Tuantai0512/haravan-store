@@ -1,26 +1,11 @@
 'use client'
-import { authAPI } from '@/api';
-import { useEffect, useState } from 'react'
-import { useRouter } from 'next/navigation';
 import Profile from './profile';
 import AccountSidebar from './account-sidebar';
 
+
 export default function AccountPage() {
 
-    const router = useRouter();
-    const [data, setData] = useState<any>(null);
 
-    useEffect(() => {
-        (async () => {
-            try {
-                const result = await authAPI.auth();
-                setData(result)
-            } catch (e) {
-                console.log(e);
-                router.push('/account/login');
-            }
-        })()
-    }, [])
 
     return (
         <div className='container flex flex-col items-center'>
@@ -29,10 +14,10 @@ export default function AccountPage() {
                 <div className="bg-black block my-5 w-16 h-1"></div>
                 <div className='flex gap-x-7 w-full'>
                     <div className='w-1/4 bg-white px-4 py-5 h-max'>
-                        <AccountSidebar/>
+                        <AccountSidebar />
                     </div>
                     <div className="w-3/4">
-                        <Profile profile={data}/>
+                        <Profile />
                     </div>
                 </div>
             </div>

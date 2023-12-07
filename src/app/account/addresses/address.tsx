@@ -1,29 +1,27 @@
 'use client'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare, faXmark } from "@fortawesome/free-solid-svg-icons";
-import { useState, useEffect } from "react";
-import { addressAPI } from "@/api";
+import { useAuth } from "@/hooks";
+import useSWR from 'swr'
+import { fetcher } from "@/utils/swr/fetcher";
 
-export interface IAppProps {
-}
 
-export default function Address(props: IAppProps) {
+export default function Address() {
 
-    const [address, setAddress] = useState<any>([])
-    useEffect(() => {
-        (async () => {
-            const res = await addressAPI.get('161d6c6c-a7ee-4dd6-bb18-c17963f491a8');
-            setAddress(res);
-        })()
-    }, [])
+    const { profile} = useAuth();
+    const { data, error, isLoading } = useSWR(`/addresses/${profile?.id}`, fetcher, {
+        revalidateIfStale: false,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+    })
 
-    console.log(address)
+    if (isLoading) return <div>loading...</div>
 
     return (
         <>
-            {address && address.addresses && address.addresses.map((item: any) => {
+            {data && data.addresses && data.addresses.map((item: any) => {
                 return (
-                    <div className="mb-4">
+                    <div className="mb-4" key={item?.id}>
                         <h3 style={{ backgroundColor: '#d9edf7' }} className="flex py-3.5 px-2.5 justify-between">
                             <div>
                                 <strong>{`${item.lastName} ${item.firstName}`} </strong>
