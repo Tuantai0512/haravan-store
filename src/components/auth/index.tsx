@@ -3,14 +3,16 @@ import { Dropdown, Space } from 'antd';
 import style from './style.module.scss'
 import Link from 'next/link';
 import { useForm } from 'react-hook-form';
-import { authAPI } from '@/api';
 import { useAuth } from '@/hooks';
 import useSWR from 'swr';
 import { fetcher } from '@/utils/swr/fetcher';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
+import { useRouter } from 'next/navigation';
 
 export function Auth() {
 
-    const { profile, login } = useAuth();
+    const { profile, login, logout } = useAuth();
     const { data, error } = useSWR<IAddressData>(`/addresses/${profile?.id}`, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
@@ -27,12 +29,49 @@ export function Auth() {
         } catch (e) {
             console.log('Failed to login: ', e);
         }
+    };
+    const router = useRouter();
+    const logOut = async () => {
+        await logout();
+        router.push('/');
     }
 
     return (
         <>
             {fullName !== 'undefined undefined' ?
-                <div className='ml-2 lg:ml-4 pl-2 lg:pl-4 border-l border-slate-200/[.1]'>Tài khoản <br/>{fullName}</div>
+                <Dropdown
+                    className='ml-2 lg:ml-4 pl-2 lg:pl-4 border-l border-slate-200/[.1]'
+                    dropdownRender={() => (
+                        <div className='bg-white w-80 p-5'>
+                            <div className='pb-2.5 border-b text-center'>
+                                <p className='uppercase text-lg font-medium'>Thông tin tài khoản</p>
+                            </div>
+                            <div className='mt-3'>
+                                <h3 className='mb-2.5 text-base font-bold'>{fullName}</h3>
+                                <ul className='list-disc pl-4'>
+                                    <li className='py-1'>
+                                        <Link href={'/account'}>Thông tin tài khoản</Link>
+                                    </li>
+                                    <li className='py-1'>
+                                        <Link href={'/account/addresses'}>Danh sách địa chỉ</Link>
+                                    </li>
+                                    <li className='py-1'>
+                                        <Link href={'#'} onClick={() => logOut()}>Đăng xuất</Link>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    )}
+                    trigger={['click']}
+                    placement="bottom" arrow
+                >
+                    <a onClick={(e) => e.preventDefault()} className='flex items-center justify-center'>
+                        <Space direction='vertical' align='center' size={0} className='flex items-start justify-center'>
+                            <p className='hidden lg:block text-xs'>Tài khoản</p>
+                            <p className='hidden lg:block'>{fullName} <FontAwesomeIcon icon={faChevronDown} /></p>
+                        </Space>
+                    </a>
+                </Dropdown>
                 :
                 <Dropdown
                     className='ml-2 lg:ml-4 pl-2 lg:pl-4 border-l border-slate-200/[.1]'
@@ -124,7 +163,7 @@ export function Auth() {
                     trigger={['click']}
                     placement="bottom" arrow
                 >
-                    <a onClick={(e) => e.preventDefault()}>
+                    <a onClick={(e) => e.preventDefault()} className='flex items-center justify-center'>
                         <Space direction='vertical' align='center' size={0} className='flex items-center justify-center'>
                             <span className={style['box-icon']}>
                                 <svg className="svg-ico-account" viewBox="0 0 1024 1024">
