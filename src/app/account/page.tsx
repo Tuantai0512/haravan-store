@@ -1,11 +1,13 @@
-'use client'
 import Profile from './profile';
 import AccountSidebar from './account-sidebar';
+import { Metadata } from 'next';
 
+export const metadata: Metadata = {
+    title: 'Tài khoản - Haravan Store Clone',
+    description: 'This is shop clone from Haravan Store',
+  }
 
 export default function AccountPage() {
-
-
 
     return (
         <div className='container flex flex-col items-center'>

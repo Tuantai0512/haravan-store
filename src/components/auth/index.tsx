@@ -68,7 +68,10 @@ export function Auth() {
                     <a onClick={(e) => e.preventDefault()} className='flex items-center justify-center'>
                         <Space direction='vertical' align='center' size={0} className='flex items-start justify-center'>
                             <p className='hidden lg:block text-xs'>Tài khoản</p>
-                            <p className='hidden lg:block'>{fullName} <FontAwesomeIcon icon={faChevronDown} /></p>
+                            <div className='flex items-center'>
+                                <p style={{width: 73}} className='hidden lg:block truncate'>{fullName} </p>
+                                <FontAwesomeIcon icon={faChevronDown} />
+                            </div>
                         </Space>
                     </a>
                 </Dropdown>

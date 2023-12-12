@@ -1,12 +1,14 @@
-import Link from "next/link";
 import Address from "./address";
 import AccountSidebar from "../account-sidebar";
 import AddressForm from "./address-form";
+import { Metadata } from "next";
 
-export interface IAppProps {
+export const metadata: Metadata = {
+    title: 'Địa chỉ - Haravan Store Clone',
+    description: 'This is shop clone from Haravan Store',
 }
 
-export default function Addresses(props: IAppProps) {
+export default function Addresses() {
     return (
         <div className='container flex flex-col items-center'>
             <div className="w-full mt-5 flex flex-col items-center pt-6 pb-7 px-7">
