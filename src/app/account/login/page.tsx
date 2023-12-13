@@ -1,9 +1,9 @@
 'use client'
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { authAPI } from "@/api";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks";
+import { toast } from "react-toastify";
 
 export interface ILoginPageProps {
 }
@@ -20,7 +20,7 @@ export default function LoginPage(props: ILoginPageProps) {
             await login(data);
             router.push('/account')
         }catch(e){
-            console.log('Failed to login: ',e);
+            toast.error(`Failed to login: ${e}`);
         }
     }
 

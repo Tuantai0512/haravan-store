@@ -9,6 +9,7 @@ import { fetcher } from '@/utils/swr/fetcher';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useRouter } from 'next/navigation';
+import { toast } from 'react-toastify';
 
 export function Auth() {
 
@@ -27,7 +28,7 @@ export function Auth() {
         try {
             await login(data);
         } catch (e) {
-            console.log('Failed to login: ', e);
+            toast.error(`Failed to login: ${e}`);
         }
     };
     const router = useRouter();

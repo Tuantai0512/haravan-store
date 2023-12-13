@@ -27,6 +27,7 @@ export default function Address() {
     return (
         <>
             {data && data.addresses &&
+                //set default value to first
                 data.addresses.sort((addressA, addressB) => {
                     if (addressA.default === addressB.default) {
                         return 0;

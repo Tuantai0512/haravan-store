@@ -4,6 +4,8 @@ import { Inter } from 'next/font/google'
 import Header from '@/components/common/header/header'
 import Footer from '@/components/common/footer/footer'
 import { Layout, Space } from 'antd';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,13 +24,14 @@ export default function RootLayout({
       <body className={inter.className}>
         <Space direction="vertical" style={{ width: '100%' }} size={[0, 48]}>
           <Layout style={{ minHeight: '100vh' }}>
-            <Header/>
+            <Header />
             <main className="flex min-h-screen flex-col">
               {children}
             </main>
             <Footer />
           </Layout>
         </Space>
+        <ToastContainer />
       </body>
     </html>
   )
