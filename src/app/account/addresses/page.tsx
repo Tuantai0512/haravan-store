@@ -24,7 +24,7 @@ export default function Addresses() {
                                 <Address />
                             </div>
                             <div className="w-1/2">
-                                <AddressForm />
+                                <AddressForm feature="create"/>
                             </div>
                         </div>
                     </div>

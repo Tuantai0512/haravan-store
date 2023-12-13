@@ -5,9 +5,12 @@ import { useAuth } from "@/hooks";
 import useSWR from 'swr'
 import { fetcher } from "@/utils/swr/fetcher";
 import { addressAPI } from "@/api";
+import { useState } from "react";
+import AddressForm from "./address-form";
 
 export default function Address() {
 
+    const [isUpdate, setIsUpdate] = useState<{ [key: string]: boolean }>({});
     const { profile } = useAuth();
     const { data, error, isLoading, mutate } = useSWR<IAddressData>(`/addresses/${profile?.id}`, fetcher, {
         revalidateIfStale: false,
@@ -32,6 +35,9 @@ export default function Address() {
                 })
                 &&
                 data.addresses.map((item: any) => {
+                    const showUpdate = () => {
+                        setIsUpdate((prev) => ({ ...prev, [item.id]: !prev[item.id] }))
+                    }
                     return (
                         <div className="mb-4" key={item.id}>
                             <h3 style={{ backgroundColor: '#d9edf7' }} className="flex py-3.5 px-2.5 justify-between">
@@ -40,7 +46,11 @@ export default function Address() {
                                     {item.default ? <span>(Địa chỉ mặc định)</span> : ''}
                                 </div>
                                 <div>
-                                    <button className="mx-2" ><FontAwesomeIcon icon={faPenToSquare} /></button>
+                                    <button
+                                        className="mx-2"
+                                        onClick={() => showUpdate()}
+                                    >
+                                        <FontAwesomeIcon icon={faPenToSquare} /></button>
                                     <button
                                         className="mx-2"
                                         onClick={() => removeAddress(item.id)}
@@ -49,14 +59,26 @@ export default function Address() {
                                     </button>
                                 </div>
                             </h3>
-                            <div style={{ backgroundColor: '#fbfbfb' }} className="p-4">
-                                <h3><strong>{`${item.lastName} ${item.firstName}`}</strong></h3>
-                                <br />
-                                <h3><strong>Công ty: </strong>{item.company}</h3>
-                                <h3><strong>Địa chỉ: </strong></h3>
-                                <br />
-                                <h3><strong>Số điện thoại: </strong></h3>
-                            </div>
+                            {isUpdate[item.id] ?
+                                <AddressForm feature="update" addressId={item.id} setIsUpdate={showUpdate}/>
+                                :
+                                <div style={{ backgroundColor: '#fbfbfb' }} className="p-4">
+                                    <h3><strong>{`${item.lastName} ${item.firstName}`}</strong></h3>
+                                    <br />
+                                    <h3><strong className="mr-2">Công ty: </strong>{item.company}</h3>
+                                    <h3 className="flex"><strong>Địa chỉ: </strong>
+                                        <div className="ml-4">
+                                            {item.address1}
+                                            <br />
+                                            {item.address2}
+                                            <br />
+                                            {`${item.province}, ${item.country}`}
+                                        </div>
+                                    </h3>
+                                    <br />
+                                    <h3><strong>Số điện thoại: </strong>{item.phoneNumber}</h3>
+                                </div>
+                            }
                         </div>
                     )
                 })}
