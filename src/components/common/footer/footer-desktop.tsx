@@ -34,19 +34,19 @@ export default function FooterDesktop() {
                         <h4 className={style['title-footer']}>Hỗ trợ khách hàng</h4>
                         <ul className={style['footer-policy-list']}>
                             <li>
-                                <Link href={'/pages/dieu-khoan-dich-vu'}>Điều khoản dịch vụ</Link>
+                                <Link href={'/pages/dieu-khoan-dich-vu'} className='!text-black'>Điều khoản dịch vụ</Link>
                             </li>
                             <li>
-                                <Link href={'/pages/chinh-sach-giao-hang'}>Chính sách giao hàng</Link>
+                                <Link href={'/pages/chinh-sach-giao-hang'} className='!text-black'>Chính sách giao hàng</Link>
                             </li>
                             <li>
-                                <Link href={'/pages/chinh-sach-doi-tra'}>Chính sách đổi trả</Link>
+                                <Link href={'/pages/chinh-sach-doi-tra'} className='!text-black'>Chính sách đổi trả</Link>
                             </li>
                             <li>
-                                <Link href={'/pages/chinh-sach-bao-mat'}>Chính sách bảo mật thông tin</Link>
+                                <Link href={'/pages/chinh-sach-bao-mat'} className='!text-black'>Chính sách bảo mật thông tin</Link>
                             </li>
                             <li>
-                                <Link href={'/pages/lien-he'}>Liên hệ</Link>
+                                <Link href={'/pages/lien-he'} className='!text-black'>Liên hệ</Link>
                             </li>
                         </ul>
                     </Col>

@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 
 export async function POST(request: Request) {
     const req = await request.json();
-    let result = await fetch('http://localhost:8080/users/login', {
+    let result = await fetch('http://localhost:8080/api/v1/users/login', {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

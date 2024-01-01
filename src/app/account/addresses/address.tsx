@@ -7,6 +7,7 @@ import { fetcher } from "@/utils/swr/fetcher";
 import { addressAPI } from "@/api";
 import { useState } from "react";
 import AddressForm from "./address-form";
+import { Skeleton } from "antd";
 
 export default function Address() {
 
@@ -17,7 +18,7 @@ export default function Address() {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
     })
-    if (isLoading) return <div>loading...</div>
+    if (isLoading) return <div><Skeleton /></div>
 
     const removeAddress = async (id: string) => {
         await addressAPI.delete(id);

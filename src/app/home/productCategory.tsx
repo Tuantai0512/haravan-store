@@ -35,7 +35,7 @@ export function ProductCategory(props: IProductCategoryProps) {
                                 <Link href={'#'}>Haravan</Link>
                             </p>
                             <h3>
-                                <Link href={'#'}>Combo Shop Offline</Link>
+                                <Link href={'#'} className='!text-black'>Combo Shop Offline</Link>
                             </h3>
                             <div className={style["product--dfex"]}>
                                 <div className={style["product--qtysold"]}>
@@ -77,7 +77,7 @@ export function ProductCategory(props: IProductCategoryProps) {
                                 <Link href={'#'}>Haravan</Link>
                             </p>
                             <h3>
-                                <Link href={'#'}>Combo Shop Offline</Link>
+                                <Link href={'#'} className='!text-black'>Combo Shop Offline</Link>
                             </h3>
                             <div className={style["product--dfex"]}>
                                 <div className={style["product--qtysold"]}>
@@ -119,7 +119,7 @@ export function ProductCategory(props: IProductCategoryProps) {
                                 <Link href={'#'}>Haravan</Link>
                             </p>
                             <h3>
-                                <Link href={'#'}>Combo Shop Offline</Link>
+                                <Link href={'#'} className='!text-black'>Combo Shop Offline</Link>
                             </h3>
                             <div className={style["product--dfex"]}>
                                 <div className={style["product--qtysold"]}>
@@ -161,7 +161,7 @@ export function ProductCategory(props: IProductCategoryProps) {
                                 <Link href={'#'}>Haravan</Link>
                             </p>
                             <h3>
-                                <Link href={'#'}>Combo Shop Offline</Link>
+                                <Link href={'#'} className='!text-black'>Combo Shop Offline</Link>
                             </h3>
                             <div className={style["product--dfex"]}>
                                 <div className={style["product--qtysold"]}>
@@ -203,7 +203,7 @@ export function ProductCategory(props: IProductCategoryProps) {
                                 <Link href={'#'}>Haravan</Link>
                             </p>
                             <h3>
-                                <Link href={'#'}>Combo Shop Offline</Link>
+                                <Link href={'#'} className='!text-black'>Combo Shop Offline</Link>
                             </h3>
                             <div className={style["product--dfex"]}>
                                 <div className={style["product--qtysold"]}>

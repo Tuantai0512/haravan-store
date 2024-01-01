@@ -12,7 +12,7 @@ export async function GET() {
     const { value } = token;
 
     try {
-        let result = await fetch('http://localhost:8080/users/auth', {
+        let result = await fetch('http://localhost:8080/api/v1/users/auth', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

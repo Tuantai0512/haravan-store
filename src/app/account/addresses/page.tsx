@@ -14,16 +14,16 @@ export default function Addresses() {
             <div className="w-full mt-5 flex flex-col items-center pt-6 pb-7 px-7">
                 <h1 className="w-full block text-center relative text-2xl font-bold">Thông tin địa chỉ</h1>
                 <div className="bg-black block my-5 w-16 h-1"></div>
-                <div className='flex gap-x-7 w-full'>
-                    <div className='w-1/4 bg-white px-4 py-5 h-max'>
+                <div className='lg:flex gap-x-7 w-full'>
+                    <div className='lg:w-1/4 bg-white px-4 py-5 h-max mb-4'>
                         <AccountSidebar />
                     </div>
-                    <div className="w-3/4">
-                        <div className="flex gap-x-8">
-                            <div className="w-1/2">
+                    <div className="lg:w-3/4">
+                        <div className="lg:flex gap-x-8">
+                            <div className="lg:w-1/2">
                                 <Address />
                             </div>
-                            <div className="w-1/2">
+                            <div className="lg:w-1/2">
                                 <AddressForm feature="create"/>
                             </div>
                         </div>

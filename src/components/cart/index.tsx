@@ -32,7 +32,7 @@ export function Cart() {
             )}
         >
             <a onClick={(e) => e.preventDefault()}>
-                <Space direction='vertical' align='center' size={0} className='relative'>
+                <Space direction='vertical' align='center' size={0} className='relative text-white'>
                     <span className={style['box-icon']}>
                         <svg className="svg-ico-cart w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 -13 456.75885 456" width="456pt">
                             <path d="m150.355469 322.332031c-30.046875 0-54.402344 24.355469-54.402344 54.402344 0 30.042969 24.355469 54.398437 54.402344 54.398437 30.042969 0 54.398437-24.355468 54.398437-54.398437-.03125-30.03125-24.367187-54.371094-54.398437-54.402344zm0 88.800781c-19 0-34.402344-15.402343-34.402344-34.398437 0-19 15.402344-34.402344 34.402344-34.402344 18.996093 0 34.398437 15.402344 34.398437 34.402344 0 18.996094-15.402344 34.398437-34.398437 34.398437zm0 0"></path>

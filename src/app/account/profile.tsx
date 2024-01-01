@@ -1,6 +1,7 @@
 'use client'
 import { useAuth } from "@/hooks";
 import { fetcher } from "@/utils/swr/fetcher";
+import { Skeleton } from "antd";
 import Link from "next/link";
 import useSWR from "swr";
 
@@ -17,8 +18,10 @@ export default function Profile() {
   return (
     <div className="bg-white px-4 py-2">
       <h3 className="uppercase pb-2 mb-1 text-base font-bold">Thông tin tài khoản</h3>
-      <h2 className="border-t pt-3 mb-1.5 text-base font-medium">{ profileLoading ? 'Loading...' : fullName }</h2>
-      {isLoading ? <p>loading...</p> : <p>{profile?.email}</p>}
+      <h2 className="border-t pt-3 mb-1.5 text-base font-medium">{ profileLoading ? <Skeleton /> : fullName }</h2>
+      {isLoading ? <Skeleton /> : <p>{profile?.email}</p>}
+      <br/>
+      
       {defaultAddress && 
         <div>
           {defaultAddress.address1}

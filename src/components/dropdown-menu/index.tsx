@@ -140,7 +140,7 @@ export function DropdownMenu() {
                 </svg>
             }
           </span>
-          Menu
+          <p className='text-white'>Menu</p>
         </Space>
       </a>
     </Dropdown>
