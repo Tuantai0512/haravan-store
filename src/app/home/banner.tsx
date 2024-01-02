@@ -11,40 +11,34 @@ import Image from 'next/image';
 import sliderImg1 from '../../../public/img/slider-banner-img.webp'
 import sliderImg2 from '../../../public/img/slider-banner-img-2.webp'
 import sliderImg3 from '../../../public/img/slider-banner-img-3.webp'
+import { convertSlug } from '@/utils/convertSlug';
 
 
 export interface IBannerProps {
-
+    productCategory: IProductCategory[];
 }
 
 export interface IProductCategory {
-    title: string,
-    link: string
+    id: string,
+    name: string
 }
 
 export function Banner(props: IBannerProps) {
-
-    const ProductCategory: IProductCategory[] = [
-        { title: 'Combo Haravan', link: '#' },
-        { title: 'Máy POS bán hàng', link: '#' },
-        { title: 'Máy in hoá đơn & vận đơn', link: '#' },
-        { title: 'Ngăn kéo đựng tiền', link: '#' },
-        { title: 'Giấy in & Tem in', link: '#' }
-    ]
+    const { productCategory } = props;
 
     return (
         <section className={style['banner']}>
             <div className='container w-full flex'>
                 <div className={style['banner-menu']}>
                     <ul>
-                        {ProductCategory.map((item, index) => {
+                        {productCategory?.map((item, index) => {
                             return (
                                 <li key={index}>
                                     <Link
-                                        href={item.link}
+                                        href={`/collections/${convertSlug(item.name)}/${item.id}`}
                                         className={style['banner-menu-item']}
                                     >
-                                        {item.title}
+                                        {item.name}
                                     </Link>
                                 </li>
                             )
