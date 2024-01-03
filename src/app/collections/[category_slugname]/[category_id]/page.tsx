@@ -1,20 +1,15 @@
 import { Breadcrumb } from 'antd';
-import { CheckboxValueType } from 'antd/es/checkbox/Group';
-import * as React from 'react';
-import slugify from 'slugify';
 import FilterSort from './filter-sort';
-
-
 
 export default async function Collections({ params }: { params: { category_slugname: string, category_id: string } }) {
     
-    const res = await fetch(`http://localhost:3000/category/${params.category_id}`);
+    const res = await fetch(`http://localhost:3000/category/${params.category_id}`,{ cache: 'no-store' });
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')
     }
     const data = await res.json();
-;
+
     return (
         <div className='container'>
             <Breadcrumb

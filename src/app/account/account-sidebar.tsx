@@ -2,6 +2,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks';
+import { mutate } from 'swr';
 
 export default function AccountSidebar() {
 
@@ -9,6 +10,7 @@ export default function AccountSidebar() {
     const router = useRouter();
     const logOut = async () => {
         await logout();
+        mutate(`/addresses`)
         router.push('/account/login');
     }
 

@@ -7,10 +7,11 @@ import useSWR from "swr";
 
 export default function Profile() {
   const { profile, isLoading } = useAuth();
-  const { data, error, isLoading: profileLoading } = useSWR<IAddressData>(`/addresses/${profile?.id}`, fetcher, {
+  const { data, error, isLoading: profileLoading } = useSWR<IAddressData>(`/addresses`, fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,
+    shouldRetryOnError: false
   });
   const defaultAddress = data?.addresses?.find((address: IAddress) => address.default);
   const fullName = `${defaultAddress?.lastName} ${defaultAddress?.firstName}`;

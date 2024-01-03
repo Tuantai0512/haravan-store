@@ -13,10 +13,11 @@ export default function Address() {
 
     const [isUpdate, setIsUpdate] = useState<{ [key: string]: boolean }>({});
     const { profile } = useAuth();
-    const { data, error, isLoading, mutate } = useSWR<IAddressData>(`/addresses/${profile?.id}`, fetcher, {
+    const { data, error, isLoading, mutate } = useSWR<IAddressData>(`/addresses`, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
+        shouldRetryOnError: false
     })
     if (isLoading) return <div><Skeleton /></div>
 
@@ -62,7 +63,7 @@ export default function Address() {
                                 </div>
                             </h3>
                             {isUpdate[item.id] ?
-                                <AddressForm feature="update" addressId={item.id} setIsUpdate={showUpdate}/>
+                                <AddressForm feature="update" address={item} setIsUpdate={showUpdate}/>
                                 :
                                 <div style={{ backgroundColor: '#fbfbfb' }} className="p-4">
                                     <h3><strong>{`${item.lastName} ${item.firstName}`}</strong></h3>

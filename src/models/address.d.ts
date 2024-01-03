@@ -2,7 +2,6 @@ interface IAddress {
     id?: string,
     createdAt?: string,
     updatedAt?: string,
-    userId?: string,
     firstName: string,
     lastName: string,
     company: null | string,

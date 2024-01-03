@@ -8,6 +8,7 @@ export function useAuth(options?: Partial<PublicConfiguration>) {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
+        shouldRetryOnError: false,
         dedupingInterval: 24 * 60 * 60 * 1000 //1 day
     })
 

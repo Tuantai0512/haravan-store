@@ -11,35 +11,33 @@ import { mutate } from "swr"
 
 export interface IAddressFormProps {
   feature: 'create' | 'update',
-  addressId?: string,
+  address?: any,
   setIsUpdate?: () => void,
 }
 
 export default function AddressForm(props: IAddressFormProps) {
 
-  const { feature, addressId, setIsUpdate } = props;
+  const { feature, address, setIsUpdate } = props;
   const { profile } = useAuth();
   const [showForm, setShowForm] = useState<boolean>(false)
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState(address?.country || '');
   const form = useForm<IAddress>();
   const { register, handleSubmit, formState } = form;
   const { errors } = formState;
   const FormSubmit = async (data: IAddress) => {
     if (props.feature == 'create') {
-      data.userId = profile?.id;
       await addressAPI.post(data);
       setShowForm(false)
     }
     if (feature == 'update') {
-      data.userId = profile?.id;
-      if (addressId) {
-        await addressAPI.put(addressId, data)
+      if (address) {
+        await addressAPI.put(address?.id, data)
       }
       if(setIsUpdate){
         setIsUpdate();
       }
     }
-    mutate(`/addresses/${profile?.id}`)
+    mutate(`/addresses`)
   }
 
   return (
@@ -222,6 +220,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Họ"
                 className="h-9 w-full px-4 py-1"
+                defaultValue={address?.lastName}
                 {...register("lastName", {
                   required: 'Bạn chưa nhập Họ',
                 })}
@@ -238,6 +237,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Tên"
                 className="h-9 w-full px-4 py-1"
+                defaultValue={address?.firstName}
                 {...register("firstName", {
                   required: 'Bạn chưa nhập Tên',
                 })}
@@ -254,6 +254,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Công ty"
                 className="h-9 w-full px-4 py-1"
+                defaultValue={address?.company}
                 {...register("company")}
               />
             </div>
@@ -265,6 +266,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Địa chỉ 1"
                 className="h-9 w-full px-4 py-1"
+                defaultValue={address?.address1}
                 {...register("address1")}
               />
             </div>
@@ -276,6 +278,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Địa chỉ 2"
                 className="h-9 w-full px-4 py-1"
+                defaultValue={address?.address2}
                 {...register("address2")}
               />
             </div>
@@ -307,6 +310,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 </div>
                 <select
                   className="h-9 w-full px-3"
+                  defaultValue={address?.province}
                   {...register("province")}
                 >
                   {country === 'Vietnam' &&
@@ -341,6 +345,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Số điện thoại"
                 className="h-9 w-full px-4 py-1"
+                defaultValue={address?.phoneNumber}
                 {...register("phoneNumber")}
               />
             </div>

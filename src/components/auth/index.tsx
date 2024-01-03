@@ -13,11 +13,12 @@ import { toast } from 'react-toastify';
 
 export function Auth() {
 
-    const { profile, login, logout } = useAuth();
-    const { data, error } = useSWR<IAddressData>(`/addresses/${profile?.id}`, fetcher, {
+    const { login, logout } = useAuth();
+    const { data, error, mutate } = useSWR<IAddressData>(`/addresses`, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
+        shouldRetryOnError: false
     });
     const defaultAddress = data?.addresses?.find((address: IAddress) => address.default);
     const fullName = `${defaultAddress?.lastName} ${defaultAddress?.firstName}`;
@@ -27,6 +28,7 @@ export function Auth() {
     const FormSubmit = async (data: ILoginForm) => {
         try {
             await login(data);
+            mutate();
         } catch (e) {
             toast.error(`Failed to login: ${e}`);
         }
@@ -34,12 +36,13 @@ export function Auth() {
     const router = useRouter();
     const logOut = async () => {
         await logout();
+        mutate();
         router.push('/');
     }
 
     return (
         <>
-            {fullName !== 'undefined undefined' ?
+            {fullName !== 'undefined undefined' && !error ?
                 <Dropdown
                     className='ml-2 lg:ml-4 pl-2 lg:pl-4 border-l border-slate-200/[.1]'
                     dropdownRender={() => (

@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks";
 import { toast } from "react-toastify";
+import { mutate } from "swr";
 
 export interface ILoginPageProps {
 }
@@ -18,6 +19,7 @@ export default function LoginPage(props: ILoginPageProps) {
     const FormSubmit = async (data: ILoginForm) => {
         try{
             await login(data);
+            mutate(`/addresses`);
             router.push('/account')
         }catch(e){
             toast.error(`Failed to login: ${e}`);
