@@ -14,4 +14,14 @@ module.exports = {
     return config;
   },
   reactStrictMode: false,
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'haravan-clone.s3.ap-southeast-1.amazonaws.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
 }

@@ -1,30 +1,23 @@
 import { Banner, ProductCategory, LatestBlog } from './home'
+import { getData } from '@/utils'
 
-async function getData() {
-  const res = await fetch('http://localhost:3000/category',{ next: { revalidate: 5 } })
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
- 
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
-
-  return res.json()
-}
+const getCategory = async(categoryId: string) => {
+  const data = await getData(`http://localhost:3000/category/${categoryId}`)
+  return data;
+} 
 
 export default async function Home() {
 
-  const data = await getData();
+  const allCategory = await getData('http://localhost:3000/category');
+  const CbHaravan = await getCategory('fb0c4d9b-4043-4652-91da-2b7a2f38c9e2');
+  const MayInHoaDon = await getCategory('9f9eec6f-a5aa-463d-92b9-999d7c58dc12');
   
   return (
     <>
-      <Banner productCategory={data}/>
+      <Banner productCategory={allCategory}/>
       <div className='container'>
-        <ProductCategory category='Combo Haravan'/>
-        <ProductCategory category='Máy in hóa đơn và vận đơn'/>
-        <ProductCategory category='Máy quét mã vạch'/>
-        <ProductCategory category='Giấy in & Tem in'/>
+        <ProductCategory category={CbHaravan}/>
+        <ProductCategory category={MayInHoaDon}/>
         <LatestBlog />
       </div>
     </>

@@ -50,11 +50,7 @@ export default function FilterSort() {
       </div>
       <div className="mt-4">
         <ul className='grid grid-cols-2 gap-1 lg:grid-cols-3 lg:gap-4'>
-          <li><ProductItem /></li>
-          <li><ProductItem /></li>
-          <li><ProductItem /></li>
-          <li><ProductItem /></li>
-          <li><ProductItem /></li>
+          
         </ul>
       </div>
     </div>

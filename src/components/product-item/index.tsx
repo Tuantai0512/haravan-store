@@ -4,20 +4,40 @@ import productImg from '../../../public/img/product-1.webp'
 import cartBtn from '../../../public/img/cart-product-icon_prev_ui.png'
 import style from './style.module.scss'
 import Link from 'next/link';
+import { formatVnd, percentDiscount } from '@/utils';
 
 export interface IProductItemProps {
+    product: IProduct;
 }
 
 export default function ProductItem(props: IProductItemProps) {
+
+    const avatar = props.product.galery.find(item => item.avatar === true);
+    const avatarUrl = avatar?.url;
+
     return (
         <div className='relative'>
-            <Image
-                src={productImg}
-                alt='Product Img'
-                className='w-full'
-            />
+            <div className='w-full relative aspect-square'>
+                {
+                    avatarUrl ?
+                        <Image
+                            src={avatarUrl}
+                            alt='Product Img'
+                            fill
+                            style={{
+                                width: '100%',
+                            }}
+                        />
+                        :
+                        <Image
+                            src={productImg}
+                            alt='Product Img'
+                            className='w-full'
+                        />
+                }
+            </div>
             <div className={style['product-sale']}>
-                <span>-29%</span>
+                <span>{percentDiscount(props.product.discount, props.product.price)}</span>
             </div>
             <div className={style['product-detail']}>
                 <div className={style['product--lbsale']}>
@@ -27,7 +47,7 @@ export default function ProductItem(props: IProductItemProps) {
                     <Link href={'#'}>Haravan</Link>
                 </p>
                 <h3>
-                    <Link href={'#'} className='!text-black'>Combo Shop Offline</Link>
+                    <Link href={'#'} className='!text-black'>{props.product.title}</Link>
                 </h3>
                 <div className={style["product--dfex"]}>
                     <div className={style["product--qtysold"]}>
@@ -36,10 +56,10 @@ export default function ProductItem(props: IProductItemProps) {
                 </div>
                 <div className={style["product--price"]}>
                     <span className={style["price"]}>
-                        3,000,000₫
+                        {formatVnd(props.product.discount)}
                     </span>
                     <span className={style["price-del"]}>
-                        4,200,000₫
+                        {formatVnd(props.product.price)}
                     </span>
                 </div>
                 <button className={style['product--cartBtn']}>
