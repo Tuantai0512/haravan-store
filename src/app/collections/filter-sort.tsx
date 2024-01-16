@@ -5,6 +5,11 @@ import { Checkbox, Radio, RadioChangeEvent } from "antd";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { useState } from "react";
 
+interface IFilterSort {
+  category?: ICategory;
+  allCategory?: ICategory[];
+}
+
 const checkBoxChange = (checkedValues: CheckboxValueType[]) => {
   console.log('checked = ', checkedValues);
 };
@@ -17,8 +22,12 @@ const plainOptions = [
   { label: 'Trên 10.000.000₫', value: 'price_variant:product > 10000000' },
 ];
 
-export default function FilterSort() {
+export default function FilterSort(props: IFilterSort) {
+  const { category, allCategory } = props;
   const [value, setValue] = useState(1);
+  const allDevice = allCategory?.filter(item => item.name !== 'Combo haravan');
+  const productArray = allDevice?.map((item) => item.products);
+  const mergeProductArray = productArray?.flat();
 
   const onChange = (e: RadioChangeEvent) => {
     console.log(e.target.value);
@@ -50,7 +59,20 @@ export default function FilterSort() {
       </div>
       <div className="mt-4">
         <ul className='grid grid-cols-2 gap-1 lg:grid-cols-3 lg:gap-4'>
-          
+          {
+            category?.products.map((item) => {
+              return (
+                <li key={item.id}><ProductItem product={item} /></li>
+              )
+            })
+          }
+          {
+            mergeProductArray?.map((item) => {
+              return (
+                <li key={item.id}><ProductItem product={item} /></li>
+              )
+            })
+          }
         </ul>
       </div>
     </div>

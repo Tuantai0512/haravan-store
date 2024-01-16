@@ -6,7 +6,6 @@ import Footer from '@/components/common/footer/footer'
 import { Layout, Space } from 'antd';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { Skeleton } from 'antd';
 import AntdRegistry from '@/lib/antd.registry'
 
 const inter = Inter({ subsets: ['latin'] })

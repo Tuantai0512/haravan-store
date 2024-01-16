@@ -23,7 +23,7 @@ export default function App() {
               title: 'Chính sách bảo hành, đổi trả',
             },
           ]}
-          className='px-2 lg:px-0 py-2'
+          className='px-2 lg:px-0 !py-2'
         />
         <div className="grid grid-cols-4 gap-4">
           <div className="col-span-4 lg:col-span-3 bg-white p-4">

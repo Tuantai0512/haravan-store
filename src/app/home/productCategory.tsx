@@ -1,12 +1,10 @@
 import Link from 'next/link';
 import style from './style.module.scss'
 import ProductItem from '@/components/product-item';
+import { convertSlug } from '@/utils';
 
 export interface IProductCategoryProps {
-    category: {
-        name: string;
-        products: IProduct[]
-    }
+    category: ICategory
 }
 
 export function ProductCategory(props: IProductCategoryProps) {
@@ -14,7 +12,7 @@ export function ProductCategory(props: IProductCategoryProps) {
         <div className='pt-8 lg:py-8'>
             <div className='my-1 lg:my-8 flex justify-center'>
                 <h2 className={style['product-title']}>
-                    <Link href={'#'}>{props.category.name}</Link>
+                    <Link href={`/collections/${convertSlug(props.category.name)}/${props.category.id}`}>{props.category.name}</Link>
                 </h2>
             </div>
             <div>

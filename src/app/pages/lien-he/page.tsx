@@ -27,7 +27,7 @@ export default function App() {
               title: 'Liên hệ',
             },
           ]}
-          className='px-2 lg:px-0 py-2'
+          className='px-2 lg:px-0 !py-2'
         />
         <Image src={banner} alt='contact banner' />
         <div className='flex flex-col lg:flex-row'>
