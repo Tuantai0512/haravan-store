@@ -44,7 +44,7 @@ export default async function Collections({ params }: { params: { category_slugn
                 className='!py-2'
             />
             <h1 className='py-2 text-2xl font-bold'>{data.name}</h1>
-            <FilterSort category={data} />
+            <FilterSort category={data}/>
         </div>
     );
 }
