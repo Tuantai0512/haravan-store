@@ -3,16 +3,14 @@ import ProductItem from "@/components/product-item";
 import { FilterOutlined } from "@ant-design/icons";
 import { Checkbox, Radio, RadioChangeEvent } from "antd";
 import { CheckboxValueType } from "antd/es/checkbox/Group";
-import { useReducer, useState } from "react";
+import { useState } from "react";
+import { sort } from "./sort";
+import { filter } from "./filter";
 
 interface IFilterSort {
   category?: ICategory;
   allCategory?: ICategory[];
 }
-
-const checkBoxChange = (checkedValues: CheckboxValueType[]) => {
-  console.log('checked = ', checkedValues);
-};
 
 const plainOptions = [
   { label: 'Dưới 1.000.000₫', value: 'price_variant:product < 1000000' },
@@ -31,44 +29,39 @@ export default function FilterSort(props: IFilterSort) {
   const mergeProductArray = productArray?.flat();
   const [productAllCategory, setProductAllCategory] = useState(mergeProductArray);
 
-  function filter(type: string, data: IProduct[]) {
-    switch (type) {
-      case 'manual': {
-        return data;
-      }
-      case 'price-ascending': {
-        return priceAscending(data);
-      }
-      case 'price-descending': {
-        return priceDescending(data);
-      }
-      case 'title-ascending': {
-        return titleAscending(data);
-      }
-      case 'title-descending': {
-        return titleDescending(data);
-      }
-      case 'created-ascending': {
-        return createdAscending(data);
-      }
-      case 'created-descending': {
-        return createdDescending(data);
-      }
-      default: {
-        return data;
-      }
-    }
-  }
+  
 
   const onChange = (e: RadioChangeEvent) => {
     setValue(e.target.value);
     if (category) {
-      setProductCategory(filter(e.target.value, category.products))
+      setProductCategory(sort(e.target.value, category.products))
     }
     if (mergeProductArray) {
-      setProductAllCategory(filter(e.target.value, mergeProductArray))
+      setProductAllCategory(sort(e.target.value, mergeProductArray))
     }
   };
+
+  const checkBoxChange = (checkedValues: CheckboxValueType[]) => {
+    if (category) {
+      if(checkedValues.length == 0){
+        setProductCategory(category.products); 
+      }else{
+        const productFilter = checkedValues.map(item => filter(item.toString(), category.products));
+        const mergeProductFilter = productFilter?.flat();
+        setProductCategory(mergeProductFilter);
+      }
+    }
+    if (mergeProductArray) {
+      if(checkedValues.length == 0){
+        setProductAllCategory(mergeProductArray); 
+      }else{
+        const productFilter = checkedValues.map(item => filter(item.toString(), mergeProductArray));
+        const mergeProductFilter = productFilter?.flat();
+        setProductAllCategory(mergeProductFilter);
+      }
+    }
+  };
+
   return (
     <div className="py-2">
       <Radio.Group onChange={onChange} value={value} className="!flex justify-between w-full">
@@ -111,50 +104,5 @@ export default function FilterSort(props: IFilterSort) {
       </div>
     </div>
   );
-}
-
-const priceAscending = (product: IProduct[]) => {
-  return product.slice().sort(function (a: IProduct, b: IProduct) {
-    return a.discount - b.discount;
-  });
-}
-
-
-const priceDescending = (product: IProduct[]) => {
-  return product.slice().sort(function (a: IProduct, b: IProduct) {
-    return b.discount - a.discount;
-  });
-}
-
-const titleAscending = (product: IProduct[]) => {
-  return product.slice().sort(function (a: IProduct, b: IProduct) {
-    var nameA = a.title.toLowerCase();
-    var nameB = b.title.toLowerCase();
-    return nameA.localeCompare(nameB);
-  });
-}
-
-const titleDescending = (product: IProduct[]) => {
-  return product.slice().sort(function (a: IProduct, b: IProduct) {
-    var nameA = a.title.toLowerCase();
-    var nameB = b.title.toLowerCase();
-    return nameB.localeCompare(nameA);
-  });
-}
-
-const createdAscending = (product: IProduct[]) => {
-  return product.slice().sort(function (a: IProduct, b: IProduct) {
-    var createdTimeA = a.createdAt.toLowerCase();
-    var createdTimeB = b.createdAt.toLowerCase();
-    return createdTimeA.localeCompare(createdTimeB);
-  });
-}
-
-const createdDescending = (product: IProduct[]) => {
-  return product.slice().sort(function (a: IProduct, b: IProduct) {
-    var createdTimeA = a.createdAt.toLowerCase();
-    var createdTimeB = b.createdAt.toLowerCase();
-    return createdTimeB.localeCompare(createdTimeA);
-  });
 }
 
