@@ -171,6 +171,9 @@ header .ant-input-group-addon button {
   .ant-collapse-item-active .ant-collapse-extra svg{
     transform: rotate(180deg);
   }
+  .filter-modal.css-dev-only-do-not-override-pr0fja.ant-checkbox-group{
+    column-gap: 100%;
+  }
 }
 
 /* Keyframes */

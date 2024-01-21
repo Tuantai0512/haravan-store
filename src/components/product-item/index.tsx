@@ -47,7 +47,7 @@ export default function ProductItem(props: IProductItemProps) {
                     <Link href={'#'}>Haravan</Link>
                 </p>
                 <h3>
-                    <Link href={'#'} className='!text-black'>{props.product.title}</Link>
+                    <Link href={'#'} className={style['product-title']}>{props.product.title}</Link>
                 </h3>
                 <div className={style["product--dfex"]}>
                     <div className={style["product--qtysold"]}>

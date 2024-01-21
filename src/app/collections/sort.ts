@@ -43,7 +43,7 @@ const createdDescending = (product: IProduct[]) => {
     });
 }
 
-export function sort(type: string, data: IProduct[]) {
+export function getSort(type: string, data: IProduct[]) {
     switch (type) {
       case 'manual': {
         return data;

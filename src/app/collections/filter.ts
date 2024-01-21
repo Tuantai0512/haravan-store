@@ -1,4 +1,4 @@
-export function filter(type: string, data: IProduct[]) {
+export function getFilter(type: string, data: IProduct[]) {
     switch (type) {
       case 'manual': {
         return data;

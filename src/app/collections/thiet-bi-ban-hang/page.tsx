@@ -29,7 +29,7 @@ export default async function Collections() {
                 ]}
                 className='!py-2'
             />
-            <h1 className='py-2 text-2xl font-bold'>Thiết bị bán hàng</h1>
+            <h1 className='py-2 text-xl lg:text-2xl font-bold px-2'>Thiết bị bán hàng</h1>
             <FilterSort allCategory={data}/>
         </div>
     );
