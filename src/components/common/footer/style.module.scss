@@ -2,7 +2,7 @@
     font-weight: 700;
     font-size: 18px;
     padding-bottom: 12px;
-    color: #0c5edb;
+    color: var(--shop-color-main);
 }
 
 .footer-policy-list{
@@ -21,7 +21,7 @@
 .phone-number{
     display: block;
     font-size: 24px;
-    color: #0c5edb;
+    color: var(--shop-color-main);
     font-weight: 500;
 }
 

@@ -1,10 +1,11 @@
 import * as React from 'react';
 import Image from 'next/image';
-import productImg from '../../../public/img/product-1.webp'
+import productImg from '../../../public/img/empty.jpg'
 import cartBtn from '../../../public/img/cart-product-icon_prev_ui.png'
 import style from './style.module.scss'
 import Link from 'next/link';
-import { formatVnd, percentDiscount } from '@/utils';
+
+import { convertSlug, formatVnd, percentDiscount } from '@/utils';
 
 export interface IProductItemProps {
     product: IProduct;
@@ -17,25 +18,33 @@ export default function ProductItem(props: IProductItemProps) {
 
     return (
         <div className='relative'>
-            <div className='w-full relative aspect-square'>
-                {
-                    avatarUrl ?
-                        <Image
-                            src={avatarUrl}
-                            alt='Product Img'
-                            fill
-                            style={{
-                                width: '100%',
-                            }}
-                        />
-                        :
-                        <Image
-                            src={productImg}
-                            alt='Product Img'
-                            className='w-full'
-                        />
-                }
-            </div>
+            <Link href={`/products/${convertSlug(props.product.title)}-${props.product.id}.html`}>
+                <div className='w-full relative aspect-square'>
+                    {
+                        avatarUrl ?
+                            <Image
+                                src={avatarUrl}
+                                alt='Product Img'
+                                fill
+                                style={{
+                                    width: '100%',
+                                }}
+                                sizes="100%"
+                            />
+                            :
+                            <Image
+                                src={productImg}
+                                alt='Product Img'
+                                className='w-full'
+                                fill
+                                style={{
+                                    width: '100%',
+                                }}
+                                sizes="100%"
+                            />
+                    }
+                </div>
+            </Link>
             <div className={style['product-sale']}>
                 <span>{percentDiscount(props.product.discount, props.product.price)}</span>
             </div>
@@ -44,10 +53,10 @@ export default function ProductItem(props: IProductItemProps) {
                     <span>Tặng ngay 5 cuộn giấy</span>
                 </div>
                 <p className={style['product--vendor']}>
-                    <Link href={'#'}>Haravan</Link>
+                    <Link href={`/products/${convertSlug(props.product.title)}-${props.product.id}.html`} >Haravan</Link>
                 </p>
                 <h3>
-                    <Link href={'#'} className={style['product-title']}>{props.product.title}</Link>
+                    <Link href={`/products/${convertSlug(props.product.title)}-${props.product.id}.html`} className={style['product-title']}>{props.product.title}</Link>
                 </h3>
                 <div className={style["product--dfex"]}>
                     <div className={style["product--qtysold"]}>

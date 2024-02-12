@@ -33,34 +33,52 @@ export default function FilterSort(props: IFilterSort) {
 
 
 
-  const onChange = (e: RadioChangeEvent) => {
+  const onChange = async (e: RadioChangeEvent) => {
     setSort(e.target.value);
-    if (category) {
-      setProductCategory(getSort(e.target.value, category.products))
-    }
-    if (mergeProductArray) {
-      setProductAllCategory(getSort(e.target.value, mergeProductArray))
+    if (e.target.value == 'manual' && !filter) {
+      if (category) {
+        setProductCategory(category.products);
+      }
+      if (mergeProductArray) {
+        setProductAllCategory(mergeProductArray)
+      }
+    } else {
+      if (productCategory) {
+        setProductCategory(getSort(e.target.value, productCategory))
+      }
+      if (productAllCategory) {
+        setProductAllCategory(getSort(e.target.value, productAllCategory))
+      }
     }
   };
 
   const checkBoxChange = (checkedValues: CheckboxValueType[]) => {
     setFilter(checkedValues);
-    if (category) {
-      if (checkedValues.length == 0) {
+    if (sort == 'manual' && !checkedValues) {
+      if (category) {
         setProductCategory(category.products);
-      } else {
-        const productFilter = checkedValues.map(item => getFilter(item.toString(), category.products));
-        const mergeProductFilter = productFilter?.flat();
-        setProductCategory(mergeProductFilter);
       }
-    }
-    if (mergeProductArray) {
-      if (checkedValues.length == 0) {
-        setProductAllCategory(mergeProductArray);
-      } else {
-        const productFilter = checkedValues.map(item => getFilter(item.toString(), mergeProductArray));
-        const mergeProductFilter = productFilter?.flat();
-        setProductAllCategory(mergeProductFilter);
+      if (mergeProductArray) {
+        setProductAllCategory(mergeProductArray)
+      }
+    } else {
+      if (category) {
+        if (checkedValues.length == 0) {
+          setProductCategory(getSort(sort, category.products));
+        } else {
+          const productFilter = checkedValues.map(item => getFilter(item.toString(), category.products));
+          const mergeProductFilter = productFilter?.flat();
+          setProductCategory(getSort(sort, mergeProductFilter));
+        }
+      }
+      if (mergeProductArray) {
+        if (checkedValues.length == 0) {
+          setProductAllCategory(getSort(sort, mergeProductArray));
+        } else {
+          const productFilter = checkedValues.map(item => getFilter(item.toString(), mergeProductArray));
+          const mergeProductFilter = productFilter?.flat();
+          setProductAllCategory(getSort(sort, mergeProductFilter));
+        }
       }
     }
   };
@@ -109,7 +127,7 @@ export default function FilterSort(props: IFilterSort) {
           <div className="bg-white rounded-md">
             <div className="py-4">
               <h3 className="font-bold py-2">Lọc giá</h3>
-              <Checkbox.Group options={plainOptions} value={filter} onChange={checkBoxChange} className="gap-2.5 filter-modal"  />
+              <Checkbox.Group options={plainOptions} value={filter} onChange={checkBoxChange} className="gap-2.5 filter-modal" />
             </div>
           </div>
         </Modal>

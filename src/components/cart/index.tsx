@@ -12,7 +12,7 @@ export function Cart() {
                     <h2 className='uppercase text-lg tracking-wide mb-2.5 text-center'>Giỏ hàng</h2>
                     <div className='pt-2.5 pb-5 border-y mb-1'>
                         <div className='flex flex-col items-center'>
-                            <svg style={{ stroke: '#0c5edb' }} width="50" height="50" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4"
+                            <svg style={{ stroke: 'var(--shop-color-main)' }} width="50" height="50" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4"
                                 fill="none" fillRule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
                             <p className='text-gray-500 mt-1'>Hiện chưa có sản phẩm</p>
                         </div>

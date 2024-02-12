@@ -37,7 +37,7 @@ export default function Address() {
                     return addressA.default ? -1 : 1;
                 })
                 &&
-                data.addresses.map((item: any) => {
+                data.addresses.map((item: IAddress) => {
                     const showUpdate = () => {
                         setIsUpdate((prev) => ({ ...prev, [item.id]: !prev[item.id] }))
                     }

@@ -2,10 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+
+/* Hide Arrows From Input Number */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.button{
+  transition: color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86), border 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
+  --shop-color-bg: #f5f8fd;
+  --shop-color-main: #0c5edb;
+  --shop-color-text: #252a2b;
+  --shop-color-title: #000000;
+  --shop-color-hover: #0c5edb;
+  --shop-color-button: #0c5edb;
+  --shop-color-cartbar: #f80404;
+  --shop-color-border: #e7e7e7;
+  --footer-color-title: #0c5edb;
+  --footer-color-text: #000000;
+  --footer-color-bg: #ffffff;
+  --shop-addthis-contact: #c0112d;
+  --about01-color-bg: #f5f8fd;
+  --about03-color-bg: #2f45a7;
+  --about03-color-text: #ffffff;
+  --about03-color-hover: #1c2f7f;
+  --about03-color-focus: #ffffff;
+  --header-category-bg: #ffffff;
+  --header-category-text: #ffffff;
+  --header-category-border: #084aa3;
+  --header-category-bgitem: #084aa3;
+  --index-promote-bg: #ffffff;
+  --index-promote-bgitem: #ffffff;
+  --product-color-soldout: #c9c3c3;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,7 +65,8 @@ body {
       rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
-textarea:focus, input:focus{
+textarea:focus,
+input:focus {
   outline: none;
 }
 
@@ -31,52 +74,51 @@ header {
   background-color: #0745aa;
 }
 
-.ant-dropdown-menu{
+.ant-dropdown-menu {
   width: 270px;
 }
 
-.ant-dropdown-menu-item-active{
+.ant-dropdown-menu-item-active {
   background-color: transparent !important;
 }
 
-.form-input::placeholder{
+.form-input::placeholder {
   color: #fff;
 }
 
-.form-label{
+.form-label {
   transition: transform 0.2s;
 }
 
-.form-input:focus + .form-label,
-.form-input:not(:placeholder-shown) + .form-label
-{
+.form-input:focus+.form-label,
+.form-input:not(:placeholder-shown)+.form-label {
   transform: translateY(-12px) scale(0.8);
 }
 
-.ant-menu-submenu-title{
+.ant-menu-submenu-title {
   padding: 0 !important;
   margin: 0 !important;
   height: 30px !important;
 }
 
-.ant-menu{
+.ant-menu {
   background-color: transparent !important;
 }
 
-.ant-menu-item{
+.ant-menu-item {
   height: 30px !important;
 }
 
-.ant-menu li{
+.ant-menu li {
   margin: 0 !important;
   padding: 0 !important;
 }
 
-.ant-menu li:hover{
+.ant-menu li:hover {
   background-color: transparent !important;
 }
 
-.ant-menu-submenu-title:hover{
+.ant-menu-submenu-title:hover {
   background-color: transparent !important;
 }
 
@@ -85,13 +127,13 @@ header .ant-input-group-addon button {
   border-left: 0;
 }
 
-#cartBtn{
+#cartBtn {
   background-color: red;
   border: 1px solid red;
   transition: all .2s linear;
 }
 
-#cartBtn:hover{
+#cartBtn:hover {
   background-color: #fff;
   color: red;
 }
@@ -99,6 +141,8 @@ header .ant-input-group-addon button {
 .ReactCollapse--collapse {
   transition: height 500ms;
 }
+
+/* style swiper */
 
 .swiper:hover .swiper-button-prev,
 .swiper:hover .swiper-button-next {
@@ -132,6 +176,8 @@ header .ant-input-group-addon button {
   color: #fff;
 }
 
+
+
 /* Responsive */
 
 @media (min-width: 768px) {
@@ -153,27 +199,40 @@ header .ant-input-group-addon button {
 }
 
 @media (max-width: 992px) {
-  .ant-dropdown-menu{
+  .ant-dropdown-menu {
     width: 100vw;
     height: calc(100vh - 65px);
   }
-  .ant-collapse-expand-icon{
+
+  .ant-collapse-expand-icon {
     display: none !important;
   }
+
   .ant-collapse-item-active .ant-collapse-header-text,
-  .ant-collapse-item-active .ant-collapse-extra svg
-  {
+  .ant-collapse-item-active .ant-collapse-extra svg {
     font-weight: 700;
   }
-  .ant-collapse-extra svg{
+
+  .ant-collapse-extra svg {
     transition: transform .4s;
   }
-  .ant-collapse-item-active .ant-collapse-extra svg{
+
+  .ant-collapse-item-active .ant-collapse-extra svg {
     transform: rotate(180deg);
   }
-  .filter-modal.css-dev-only-do-not-override-pr0fja.ant-checkbox-group{
+
+  .filter-modal.css-dev-only-do-not-override-pr0fja.ant-checkbox-group {
     column-gap: 100%;
   }
 }
 
-/* Keyframes */
+/* Style gallery nav button */
+.image-gallery-svg{
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.image-gallery-fullscreen-button .image-gallery-svg{
+  width: 30px !important;
+  height: 30px !important;
+}

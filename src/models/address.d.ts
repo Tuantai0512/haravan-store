@@ -1,5 +1,5 @@
 interface IAddress {
-    id?: string,
+    id: string,
     createdAt?: string,
     updatedAt?: string,
     firstName: string,

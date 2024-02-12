@@ -29,7 +29,7 @@
             color: #000 !important;
 
             &:hover {
-                border-left-color: #0c5edb;
+                border-left-color: var(--shop-color-main);
                 background-color: #f4f6f8;
                 color: #000;
                 transition: all .2s linear;
@@ -46,7 +46,7 @@
         color: #ffffff !important;
         display: inline-block;
         min-width: 70%;
-        background: #0c5edb;
+        background: var(--shop-color-main);
         box-shadow: 0px 0px 0px 2px rgba(12, 94, 219, 0.8);
         padding: 8px 15px 10px;
         border-radius: 50px;
@@ -90,7 +90,7 @@
         a{
             font-size: 14px;
             font-weight: 500;
-            color: #0c5edb;
+            color: var(--shop-color-main);
         }
     }
 }

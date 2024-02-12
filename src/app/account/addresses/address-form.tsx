@@ -5,20 +5,19 @@ import { SetStateAction, useState } from 'react'
 import { VNProvince, USProvince, TLProvince } from "./province";
 import { useForm } from "react-hook-form";
 import Link from "next/link";
-import { useAuth } from "@/hooks";
 import { addressAPI } from "@/api";
 import { mutate } from "swr"
+import { toast } from "react-toastify";
 
 export interface IAddressFormProps {
   feature: 'create' | 'update',
-  address?: any,
+  address?: IAddress,
   setIsUpdate?: () => void,
 }
 
 export default function AddressForm(props: IAddressFormProps) {
 
   const { feature, address, setIsUpdate } = props;
-  const { profile } = useAuth();
   const [showForm, setShowForm] = useState<boolean>(false)
   const [country, setCountry] = useState(address?.country || '');
   const form = useForm<IAddress>();
@@ -33,7 +32,7 @@ export default function AddressForm(props: IAddressFormProps) {
       if (address) {
         await addressAPI.put(address?.id, data)
       }
-      if(setIsUpdate){
+      if (setIsUpdate) {
         setIsUpdate();
       }
     }
@@ -193,18 +192,14 @@ export default function AddressForm(props: IAddressFormProps) {
               <label htmlFor="default"> Đặt làm địa chỉ mặc định.</label>
             </div>
             <div className="flex items-center">
-              <button
+              <input
+                type="submit"
                 style={{ backgroundColor: '#323232' }}
                 className='uppercase px-6 py-2.5 text-white mr-3'
-              >{props.feature == "create" ? 'Thêm mới' : 'Cập nhật'}</button>
+                value={'Thêm mới'}
+              />
               hoặc
-              { props.feature === 'create' ? 
-                <Link href='#' className="ml-1 text-sky-500" onClick={() => setShowForm(!showForm)}> Hủy</Link>
-                :
-                <Link href='#' className="ml-1 text-sky-500" onClick={() => {if(setIsUpdate){
-                  setIsUpdate();
-                }}}> Hủy</Link>
-              }
+              <Link href='#' className="ml-1 text-sky-500" onClick={() => setShowForm(!showForm)}> Hủy</Link>
             </div>
           </form>
         </div>
@@ -254,7 +249,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Công ty"
                 className="h-9 w-full px-4 py-1"
-                defaultValue={address?.company}
+                defaultValue={address?.company || ''}
                 {...register("company")}
               />
             </div>
@@ -266,7 +261,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Địa chỉ 1"
                 className="h-9 w-full px-4 py-1"
-                defaultValue={address?.address1}
+                defaultValue={address?.address1 || ''}
                 {...register("address1")}
               />
             </div>
@@ -278,7 +273,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Địa chỉ 2"
                 className="h-9 w-full px-4 py-1"
-                defaultValue={address?.address2}
+                defaultValue={address?.address2 || ''}
                 {...register("address2")}
               />
             </div>
@@ -345,7 +340,7 @@ export default function AddressForm(props: IAddressFormProps) {
                 type="text"
                 placeholder="Số điện thoại"
                 className="h-9 w-full px-4 py-1"
-                defaultValue={address?.phoneNumber}
+                defaultValue={address?.phoneNumber || ''}
                 {...register("phoneNumber")}
               />
             </div>
@@ -358,18 +353,18 @@ export default function AddressForm(props: IAddressFormProps) {
               <label htmlFor="default"> Đặt làm địa chỉ mặc định.</label>
             </div>
             <div className="flex items-center">
-              <button
+              <input
+                type="submit"
                 style={{ backgroundColor: '#323232' }}
                 className='uppercase px-6 py-2.5 text-white mr-3'
-              >{props.feature == "create" ? 'Thêm mới' : 'Cập nhật'}</button>
+                value={'Cập nhật'}
+              />
               hoặc
-              { props.feature === 'create' ? 
-                <Link href='#' className="ml-1 text-sky-500" onClick={() => setShowForm(!showForm)}> Hủy</Link>
-                :
-                <Link href='#' className="ml-1 text-sky-500" onClick={() => {if(setIsUpdate){
+              <Link href='#' className="ml-1 text-sky-500" onClick={() => {
+                if (setIsUpdate) {
                   setIsUpdate();
-                }}}> Hủy</Link>
-              }
+                }
+              }}> Hủy</Link>
             </div>
           </form>
         </div>

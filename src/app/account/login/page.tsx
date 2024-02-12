@@ -87,7 +87,7 @@ export default function LoginPage(props: ILoginPageProps) {
                     </div>
                     <div className="flex justify-center items-center mb-3">
                         <button
-                            style={{ backgroundColor: '#0c5edb' }}
+                            style={{ backgroundColor: 'var(--shop-color-main)' }}
                             className='uppercase px-7 py-2.5 text-white mx-3'
                         >Đăng nhập</button>
                         <p className='text-center text-xs mx-3 text-sm font-medium'>

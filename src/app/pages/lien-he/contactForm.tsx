@@ -98,7 +98,7 @@ export default function ContactForm() {
             </div>
             <button
                 className='px-7 py-3 text-white uppercase mt-4 mb-10'
-                style={{ backgroundColor: '#0c5edb' }}
+                style={{ backgroundColor: 'var(--shop-color-main)' }}
             >
                 Gửi cho chúng tôi
             </button>

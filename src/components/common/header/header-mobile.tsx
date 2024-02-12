@@ -17,6 +17,7 @@ export default function HeaderMobile () {
                   src={logo}
                   width={160} 
                   alt='logo'
+                  priority={true}
                   className='px-2 lg:px-4'
               />
             </Link>

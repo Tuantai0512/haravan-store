@@ -21,7 +21,7 @@ export async function GET(request: NextRequest) {
     });
     let data = await result.json();
 
-    return NextResponse.json(data);
+    return NextResponse.json(data, { status: result.status });
 }
 
 export async function POST(request: NextRequest) {
@@ -44,6 +44,6 @@ export async function POST(request: NextRequest) {
         body: JSON.stringify(req)
     });
     let data = await result.json();
-    return NextResponse.json(data);
+    return NextResponse.json(data, { status: result.status });
 }
 

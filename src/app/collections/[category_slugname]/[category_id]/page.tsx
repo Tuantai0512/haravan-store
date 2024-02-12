@@ -16,7 +16,7 @@ export async function generateMetadata(
     const category = await fetch(`http://localhost:3000/category/${id}`).then((res) => res.json());
 
     return {
-        title: `${category.name} - Haravan Store Clone.`,
+        title: `${category.name} - Haravan Store Clone`,
         description: `Đây là các sản phẩm ${category.name} của Haravan Store`
     }
 }

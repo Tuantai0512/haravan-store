@@ -5,5 +5,6 @@ interface IProduct {
     price: number;
     discount: number;
     description: string;
+    category: ICategory;
     galery: IGalery[];
 }

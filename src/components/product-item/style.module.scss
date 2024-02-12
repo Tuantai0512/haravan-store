@@ -102,8 +102,8 @@
     &--cartBtn {
         display: flex;
         justify-content: center;
-        border: 1px solid #0c5edb;
-        color: #0c5edb;
+        border: 1px solid var(--shop-color-main);
+        color: var(--shop-color-main);
         padding: 8px;
         border-radius: 5px;
 
@@ -118,7 +118,7 @@
         }
 
         &:hover {
-            background-color: #0c5edb;
+            background-color: var(--shop-color-main);
             color: #fff;
         }
     }

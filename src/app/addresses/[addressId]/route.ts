@@ -21,7 +21,8 @@ export async function PUT(request: NextRequest, context: { params: any }) {
         body: JSON.stringify(req)
     });
     let data = await result.json();
-    return NextResponse.json(data);
+    return NextResponse.json(data, { status: result.status });
+    
 }
 
 export async function DELETE(request: NextRequest, context: { params: any }) {

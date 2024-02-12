@@ -14,7 +14,7 @@ import style from './style.module.scss'
 const items: CollapseProps['items'] = [
     {
         key: '1',
-        label: <h5 style={{ color: '#0c5edb' }} className="text-base">About Us</h5>,
+        label: <h5 style={{ color: 'var(--shop-color-main)' }} className="text-base">About Us</h5>,
         children: <div>
             <p className="mb-2.5">Haravan Store chuyên cung cấp các thiết bị chính hãng,
                 vật dụng đóng gói hỗ trợ nhà bán lẻ kinh doanh tiện lợi và hiệu quả hơn,
@@ -37,11 +37,11 @@ const items: CollapseProps['items'] = [
                 className='mt-4'
             />
         </div>,
-        extra: <FontAwesomeIcon icon={faChevronDown} style={{ width: 12, color: '#0c5edb' }} />
+        extra: <FontAwesomeIcon icon={faChevronDown} style={{ width: 12, color: 'var(--shop-color-main)' }} />
     },
     {
         key: '2',
-        label: <h5 style={{ color: '#0c5edb' }} className="text-base">Hỗ trợ khách hàng</h5>,
+        label: <h5 style={{ color: 'var(--shop-color-main)' }} className="text-base">Hỗ trợ khách hàng</h5>,
         children: <ul className={`${style['footer-policy-list']} ml-4`}>
             <li>
                 <Link href={'/pages/dieu-khoan-dich-vu'}>Điều khoản dịch vụ</Link>
@@ -59,11 +59,11 @@ const items: CollapseProps['items'] = [
                 <Link href={'/pages/lien-he'}>Liên hệ</Link>
             </li>
         </ul>,
-        extra: <FontAwesomeIcon icon={faChevronDown} style={{ width: 12, color: '#0c5edb' }} />
+        extra: <FontAwesomeIcon icon={faChevronDown} style={{ width: 12, color: 'var(--shop-color-main)' }} />
     },
     {
         key: '3',
-        label: <h5 style={{ color: '#0c5edb' }} className="text-base">Chăm sóc khách hàng</h5>,
+        label: <h5 style={{ color: 'var(--shop-color-main)' }} className="text-base">Chăm sóc khách hàng</h5>,
         children: <div className='flex items-center'>
             <div className={style['box-icon']}>
                 <Image src={phoneIcon} alt="phone icon" />
@@ -73,7 +73,7 @@ const items: CollapseProps['items'] = [
                 <span className={style['email']}>store@haravan.com</span>
             </div>
         </div>,
-        extra: <FontAwesomeIcon icon={faChevronDown} style={{ width: 12, color: '#0c5edb' }} />
+        extra: <FontAwesomeIcon icon={faChevronDown} style={{ width: 12, color: 'var(--shop-color-main)' }} />
     },
 ];
 
@@ -83,12 +83,12 @@ export default function FooterMobile() {
 
     return (
         <>
-            <div style={{ height: 50, backgroundColor: '#0c5edb' }} className="lg:hidden px-3 py-1 flex items-center justify-between">
+            <div style={{ height: 50, backgroundColor: 'var(--shop-color-main)' }} className="lg:hidden px-3 py-1 flex items-center justify-between">
                 <div>
                     <p style={{ fontSize: 10 }} className="text-white">Bán hàng 7:00 - 21:30</p>
                     <div style={{ fontSize: 10 }} className="flex items-center text-white font-bold">
                         <div className="bg-white w-3 h-3 flex items-center justify-center rounded-sm mr-2">
-                            <FontAwesomeIcon icon={faPhone} style={{ width: 8, color: '#0c5edb' }} />
+                            <FontAwesomeIcon icon={faPhone} style={{ width: 8, color: 'var(--shop-color-main)' }} />
                         </div>
                         0981.475.261
                     </div>
@@ -97,7 +97,7 @@ export default function FooterMobile() {
                     <p style={{ fontSize: 10 }} className="text-white">Khiếu nại 8:00 - 21:30</p>
                     <div style={{ fontSize: 10 }} className="flex items-center text-white font-bold">
                         <div className="bg-white w-3 h-3 flex items-center justify-center rounded-sm mr-2">
-                            <FontAwesomeIcon icon={faPhone} style={{ width: 8, color: '#0c5edb' }} />
+                            <FontAwesomeIcon icon={faPhone} style={{ width: 8, color: 'var(--shop-color-main)' }} />
                         </div>
                         0981.475.261
                     </div>

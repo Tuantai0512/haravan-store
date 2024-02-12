@@ -34,7 +34,7 @@ export default function Profile() {
           {defaultAddress.phoneNumber}
         </div>
       }
-      <Link style={{ color: '#0c5edb' }} href={'/account/addresses'} className="block mb-4 mt-1 underline">Xem địa chỉ</Link>
+      <Link style={{ color: 'var(--shop-color-main)' }} href={'/account/addresses'} className="block mb-4 mt-1 underline">Xem địa chỉ</Link>
     </div>
   );
 }

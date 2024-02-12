@@ -19,6 +19,7 @@ export default function HeaderDesktop () {
               src={logo}
               width={185} 
               alt='logo'
+              priority={true}
               className='px-4'
           />
         </Link>

@@ -145,7 +145,7 @@ export function Auth() {
                                     apply.
                                 </div>
                                 <button
-                                    style={{ backgroundColor: '#0c5edb' }}
+                                    style={{ backgroundColor: 'var(--shop-color-main)' }}
                                     className='uppercase w-full py-2.5 text-white mb-3'
                                 >Đăng nhập</button>
                                 <p className='mb-1 text-left text-xs'>Khách hàng mới?
