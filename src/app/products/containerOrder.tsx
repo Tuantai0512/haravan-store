@@ -12,7 +12,7 @@ export default function ContainerOrder(props: IContainerOrderProps) {
 
     return (
         <div className='bg-white p-4 mb-4'>
-            <h1 className='text-2xl mb-2 font-bold'>{props.product.title}</h1>
+            <h1 className='text-xl lg:text-2xl mb-2 font-bold'>{props.product.title}</h1>
             <p>
                 Thương hiệu:
                 <span style={{ color: 'var(--shop-color-main)' }} className='border-r-2 mr-2 pr-2 pl-1'>Haravan</span>
@@ -21,11 +21,13 @@ export default function ContainerOrder(props: IContainerOrderProps) {
             <div style={{ backgroundColor: '#FFDD00' }} className='my-2 px-4 rounded-full w-max'>
                 <span>Tặng ngay 5 cuộn giấy</span>
             </div>
-            <div className='flex items-center mb-4'>
+            <div className='lg:flex items-center mb-4'>
                 <span className='text-2xl text-red-500 font-semibold mr-2.5'>{formatVnd(props.product.discount)}</span>
-                <del className='text-slate-400 text-lg mr-2.5'>{formatVnd(props.product.price)}</del>
-                <span className='inline-block px-3 text-red-500 bg-slate-200 w-max mr-2.5 font-semibold'>-{percentDiscount(props.product.discount, props.product.price)}</span>
-                <span className='inline-block px-2.5 bg-sky-100 w-max mr-2.5 rounded border border-sky-200'>Giá đã có VAT</span>
+                <div className='flex items-center mt-2'>
+                    <del className='text-slate-400 text-lg mr-2.5'>{formatVnd(props.product.price)}</del>
+                    <span className='inline-block px-3 text-red-500 bg-slate-200 w-max mr-2.5 font-semibold'>-{percentDiscount(props.product.discount, props.product.price)}</span>
+                    <span className='inline-block px-2.5 bg-sky-100 w-max mr-2.5 rounded border border-sky-200'>Giá đã có VAT</span>
+                </div>
             </div>
             <div className='flex items-center'>
                 <button

@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 
 export async function GET(request: NextRequest) {
-    let result = await fetch(`http://localhost:8080/api/v1${request.nextUrl.pathname}`, { cache: 'no-store' });
+    let result = await fetch(`http://localhost:8080/api/v1${request.nextUrl.pathname.substring(4)}`, { cache: 'no-store' });
     let data = await result.json();
 
     return NextResponse.json(data);
@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     const req = await request.json();
-    let result = await fetch(`http://localhost:8080/api/v1${request.nextUrl.pathname}`, {
+    let result = await fetch(`http://localhost:8080/api/v1${request.nextUrl.pathname.substring(4)}`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 
 export async function PUT(request: NextRequest) {
     const req = await request.json();
-    let result = await fetch(`http://localhost:8080/api/v1${request.nextUrl.pathname}`, {
+    let result = await fetch(`http://localhost:8080/api/v1${request.nextUrl.pathname.substring(4)}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
@@ -37,7 +37,7 @@ export async function PUT(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-    let result = await fetch(`http://localhost:8080/api/v1${request.nextUrl.pathname}`,{method: 'DELETE'} );
+    let result = await fetch(`http://localhost:8080/api/v1${request.nextUrl.pathname.substring(4)}`,{method: 'DELETE'} );
     let data = await result.json();
 
     return NextResponse.json(data);

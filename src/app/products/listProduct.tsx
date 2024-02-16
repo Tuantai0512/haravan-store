@@ -11,6 +11,7 @@ import 'swiper/css/effect-fade';
 // import required modules
 import { A11y, Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
 import ProductItem from '@/components/product-item';
+import { useWindowSize } from '@/hooks';
 
 interface IListProductProps {
   category: ICategory,
@@ -18,13 +19,15 @@ interface IListProductProps {
 }
 
 export default function ListProduct(props: IListProductProps) {
+
+  const size = useWindowSize();
   const { category, productId } = props;
   const relatedProduct: IProduct[] = category.products.filter(item => item.id !== productId);
   return (
-    <div className="product-item !py-10 my-10">
-      <h2 className='text-center mb-5 text-3xl font-bold'>Sản phẩm liên quan</h2>
+    <div className="product-item !py-5 lg:!py-10 my-10 lg:my-10">
+      <h2 className='text-center mb-5 text-2xl lg:text-3xl font-bold'>Sản phẩm liên quan</h2>
       <Swiper
-        slidesPerView={5}
+        slidesPerView={size.width >= 992 ? 5 : 2}
         spaceBetween={15}
         navigation
         modules={[Navigation, A11y, Autoplay, EffectFade]}

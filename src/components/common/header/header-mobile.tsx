@@ -9,7 +9,7 @@ import { SearchMobile } from "@/components/search";
 
 export default function HeaderMobile () {
   return (
-    <header style={{ height: '65px', top: 0, zIndex: 2 }} className='text-white lg:hidden flex items-center justify-between sticky'>
+    <header style={{ height: '65px', top: 0, zIndex: 10 }} className='text-white lg:hidden flex items-center justify-between sticky'>
           <div className="flex items-center">
             <DropdownMenu/>
             <Link href={'/'}>

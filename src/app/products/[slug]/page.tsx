@@ -19,7 +19,7 @@ export async function generateMetadata(
   const id = getIdFromSlug(params.slug)
 
   // fetch data
-  const product: IProduct = await fetch(`http://localhost:3000/product/${id}`).then((res) => res.json());
+  const product: IProduct = await fetch(`http://localhost:3000/api/product/${id}`).then((res) => res.json());
 
   return {
     title: `${product.title} - Haravan Store Clone`,
@@ -29,8 +29,8 @@ export async function generateMetadata(
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
 
-  const product: IProduct = await getData(`http://localhost:3000/product/${getIdFromSlug(params.slug)}`);
-  const productCategory: ICategory = await getData(`http://localhost:3000/category/${product.category.id}`)
+  const product: IProduct = await getData(`http://localhost:3000/api/product/${getIdFromSlug(params.slug)}`);
+  const productCategory: ICategory = await getData(`http://localhost:3000/api/category/${product.category.id}`)
 
   return (
     <div className='container'>
@@ -47,16 +47,16 @@ export default async function ProductPage({ params }: { params: { slug: string }
             </Link>,
           },
           {
-            title: `${product.title}`,
+            title: <p className='limit-1-line'>{product.title}</p>,
           },
         ]}
         className='!px-2 !py-2'
       />
-      <div className='flex gap-x-4'>
-        <div className='w-1/2'>
+      <div className='lg:flex gap-x-4'>
+        <div className='w-full lg:w-1/2'>
           <Gallery galery={product.galery}/>
         </div>
-        <div className='w-1/2'>
+        <div className='w-full lg:w-1/2'>
           <ContainerOrder product={product}/>
           <ProductDescription product={product}/>
         </div>

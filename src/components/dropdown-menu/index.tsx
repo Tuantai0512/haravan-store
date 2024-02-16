@@ -34,7 +34,7 @@ export function DropdownMenu() {
     setOpen(flag);
   };
 
-  const { data } = useSWR<ICategory[]>(`/category`, fetcher, {
+  const { data } = useSWR<ICategory[]>(`/api/category`, fetcher, {
     revalidateIfStale: false,
     revalidateOnFocus: false,
     revalidateOnReconnect: false,

@@ -6,19 +6,11 @@ import { CSSProperties } from "react";
 import Image from "next/image"
 import deliverly1 from '../../../public/img/product_deliverly_1_ico.webp'
 import deliverly2 from '../../../public/img/product_deliverly_2_ico.webp'
-import deliverly3 from '../../../public/img/product_deliverly_3_ico.webp'
 
 
 export interface IProductDescriptionProps {
     product: IProduct;
 }
-
-const text = `
-        A dog is a type of domesticated animal.
-        Known for its loyalty and faithfulness,
-        it can be found as a welcome guest in many households across the world.
-    `;
-
 
 export default function ProductDescription(props: IProductDescriptionProps) {
 

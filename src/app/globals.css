@@ -16,7 +16,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-.button{
+.button {
   transition: color 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86), border 0.45s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 }
 
@@ -227,12 +227,32 @@ header .ant-input-group-addon button {
 }
 
 /* Style gallery nav button */
-.image-gallery-svg{
+.image-gallery-svg {
   width: 40px !important;
   height: 40px !important;
 }
 
-.image-gallery-fullscreen-button .image-gallery-svg{
+.image-gallery-fullscreen-button .image-gallery-svg {
   width: 30px !important;
   height: 30px !important;
+}
+
+/* Limit text line*/
+.limit-1-line {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  /* number of lines to show */
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+/* Style page not found*/
+
+.content-pageNot h1 {
+  display: block;
+  color: #fff;
+  font-size: 170px;
+  font-weight: bold;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
 }

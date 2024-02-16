@@ -11,7 +11,7 @@ import Link from 'next/link';
 
 export default function HeaderDesktop () {
   return (
-    <header style={{ height: '73px', top: 0, zIndex: 2 }} className='text-white hidden lg:flex items-center sticky'>
+    <header style={{ height: '73px', top: 0, zIndex: 10 }} className='text-white hidden lg:flex items-center sticky'>
       <div className='container flex items-center'>
         <DropdownMenu/>
         <Link href={'/'}>

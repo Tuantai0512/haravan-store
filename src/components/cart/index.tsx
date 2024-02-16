@@ -1,14 +1,22 @@
 import { Dropdown, Space } from 'antd';
 import style from './style.module.scss'
+import Link from 'next/link';
+import { useState } from 'react';
+import { usePathname } from 'next/navigation'
 
 export function Cart() {
+
+    const [open, setOpen] = useState(false);
+    const pathname = usePathname();
+
     return (
         <Dropdown
             className='ml-2 lg:ml-4 pl-2 lg:pl-4 border-l border-slate-200/[.1]'
-            trigger={['click']}
             placement="bottomRight" arrow
+            open={open}
+            trigger={['click']}
             dropdownRender={() => (
-                <div style={{ width: 420 }} className='bg-white p-5'>
+                <div style={{ maxWidth: 420, width: 'calc(100vw - 20px)' }} className='bg-white p-5'>
                     <h2 className='uppercase text-lg tracking-wide mb-2.5 text-center'>Giỏ hàng</h2>
                     <div className='pt-2.5 pb-5 border-y mb-1'>
                         <div className='flex flex-col items-center'>
@@ -24,14 +32,23 @@ export function Cart() {
                             </div>
                             <div style={{ color: 'red' }} className='font-bold text-base'>0₫</div>
                         </div>
-                        <button
+                        <Link
+                            href='\cart'
                             id='cartBtn'
-                            className='text-white uppercase w-full py-2 rounded-sm'>Xem giỏ hàng</button>
+                            onClick={() => setOpen(false)}
+                            className='block !text-white hover:!text-red-500 text-center uppercase w-full py-2 rounded-sm'>Xem giỏ hàng
+                        </Link>
                     </div>
                 </div>
             )}
         >
-            <a onClick={(e) => e.preventDefault()}>
+            <a onClick={() => {
+                if(pathname == '/cart'){
+                    setOpen(false)
+                }else{
+                    setOpen(!open)
+                }
+            }}>
                 <Space direction='vertical' align='center' size={0} className='relative text-white'>
                     <span className={style['box-icon']}>
                         <svg className="svg-ico-cart w-full h-full" xmlns="http://www.w3.org/2000/svg" viewBox="0 -13 456.75885 456" width="456pt">

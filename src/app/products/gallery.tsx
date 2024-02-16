@@ -1,12 +1,15 @@
 'use client'
 import "react-image-gallery/styles/css/image-gallery.css";
 import ImageGallery from "react-image-gallery";
+import { useWindowSize } from "@/hooks";
 
 export interface IGalleryProps {
     galery: IGalery[]
 }
 
 export default function Gallery(props: IGalleryProps) {
+
+    const size = useWindowSize();
 
     const galery = props.galery.sort((photoA, photoB) => {
         if (photoA.avatar === photoB.avatar) {
@@ -23,6 +26,6 @@ export default function Gallery(props: IGalleryProps) {
     })
 
     return (
-        <ImageGallery items={newGalery} thumbnailPosition="left" showPlayButton={false} showBullets={true}/>
+        <ImageGallery items={newGalery} thumbnailPosition={size.width >= 992 ? "left" : "bottom"} showPlayButton={false} showBullets={true}/>
     );
 }

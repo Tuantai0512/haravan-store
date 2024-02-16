@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default async function Collections() {
     
-    const res = await fetch(`http://localhost:3000/category`,{ cache: 'no-store' });
+    const res = await fetch(`http://localhost:3000/api/category`,{ cache: 'no-store' });
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')
