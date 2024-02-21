@@ -6,8 +6,9 @@ import Link from "next/link";
 import Image from "next/image";
 import logo from '../../../../public/img/logo.webp'
 import { SearchMobile } from "@/components/search";
+import { IHeaderProps } from "./header";
 
-export default function HeaderMobile () {
+export default function HeaderMobile (props: IHeaderProps) {
   return (
     <header style={{ height: '65px', top: 0, zIndex: 10 }} className='text-white lg:hidden flex items-center justify-between sticky'>
           <div className="flex items-center">
@@ -25,7 +26,7 @@ export default function HeaderMobile () {
           <div className="flex items-center mr-3">
             <SearchMobile />
             <Auth />
-            <Cart/> 
+            <Cart cartId={props.cartId}/> 
           </div>
     </header>
   );

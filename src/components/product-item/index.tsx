@@ -1,3 +1,4 @@
+'use client'
 import * as React from 'react';
 import Image from 'next/image';
 import productImg from '../../../public/img/empty.jpg'
@@ -6,15 +7,41 @@ import style from './style.module.scss'
 import Link from 'next/link';
 
 import { convertSlug, formatVnd, percentDiscount } from '@/utils';
+import axiosClient from '@/api/axios-client';
+import { toast } from 'react-toastify';
+import { mutate } from 'swr';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 export interface IProductItemProps {
     product: IProduct;
+    cartId: RequestCookie | undefined
 }
 
 export default function ProductItem(props: IProductItemProps) {
 
+    const { product, cartId } = props;
     const avatar = props.product.galery.find(item => item.avatar === true);
     const avatarUrl = avatar?.url;
+
+    const handleCartBtn = async () => {
+        if (!cartId) {
+            await axiosClient.post('/api/cart', {
+                fullName: null,
+                email: null,
+                phoneNumber: null
+            });
+        } else {
+            await axiosClient.post('/api/cart-detail', {
+                cartId: cartId.value,
+                productId: product.id,
+            }).then(() => {
+                toast.success('Thêm thành công sản phẩm vào giỏ hàng!');
+            }).catch((error) => {
+                toast.error('Thêm thất bại: ', error.response.data.message);
+            });
+        }
+        mutate(`/api/cart/${cartId?.value}`)
+    }
 
     return (
         <div className='relative'>
@@ -71,7 +98,7 @@ export default function ProductItem(props: IProductItemProps) {
                         {formatVnd(props.product.price)}
                     </span>
                 </div>
-                <button className={style['product--cartBtn']}>
+                <button className={style['product--cartBtn']} onClick={() => handleCartBtn()}>
                     <Image
                         src={cartBtn}
                         alt='cart button'

@@ -1,3 +1,4 @@
+import { cookies } from 'next/headers';
 import { Banner, ProductCategory, LatestBlog } from './home'
 import { getData } from '@/utils'
 
@@ -7,6 +8,9 @@ const getCategory = async(categoryId: string) => {
 } 
 
 export default async function Home() {
+
+  const cookieStore = cookies();
+  const cartId = cookieStore.get('cart_id');
 
   const allCategory = await getData('http://localhost:3000/api/category');
   const CbHaravan = await getCategory('fb0c4d9b-4043-4652-91da-2b7a2f38c9e2');
@@ -18,10 +22,10 @@ export default async function Home() {
     <>
       <Banner productCategory={allCategory}/>
       <div className='container'>
-        <ProductCategory category={CbHaravan}/>
-        <ProductCategory category={MayInHoaDon}/>
-        <ProductCategory category={MayQuetMaVach}/>
-        <ProductCategory category={GiayIn}/>
+        <ProductCategory category={CbHaravan} cartId={cartId}/>
+        <ProductCategory category={MayInHoaDon} cartId={cartId}/>
+        <ProductCategory category={MayQuetMaVach} cartId={cartId}/>
+        <ProductCategory category={GiayIn} cartId={cartId}/>
         <LatestBlog />
       </div>
     </>

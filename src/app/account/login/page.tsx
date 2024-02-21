@@ -22,7 +22,7 @@ export default function LoginPage(props: ILoginPageProps) {
             mutate(`/addresses`);
             router.push('/account')
         }catch(e){
-            toast.error(`Failed to login: ${e}`);
+            
         }
     }
 

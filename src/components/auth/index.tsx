@@ -26,12 +26,8 @@ export function Auth() {
     const { register, handleSubmit, formState } = form;
     const { errors } = formState;
     const FormSubmit = async (data: ILoginForm) => {
-        try {
-            await login(data);
-            mutate();
-        } catch (e) {
-            toast.error(`Failed to login: ${e}`);
-        }
+        await login(data);
+        mutate();
     };
     const router = useRouter();
     const logOut = async () => {
@@ -73,7 +69,7 @@ export function Auth() {
                         <Space direction='vertical' size={0} className='flex justify-center text-white'>
                             <p className='hidden lg:block text-xs'>Tài khoản</p>
                             <div className='flex items-center'>
-                                <p style={{width: 73}} className='hidden lg:block truncate'>{fullName} </p>
+                                <p style={{ width: 73 }} className='hidden lg:block truncate'>{fullName} </p>
                                 <FontAwesomeIcon icon={faChevronDown} />
                             </div>
                         </Space>

@@ -12,16 +12,18 @@ import 'swiper/css/effect-fade';
 import { A11y, Autoplay, EffectFade, Navigation, Pagination } from 'swiper/modules';
 import ProductItem from '@/components/product-item';
 import { useWindowSize } from '@/hooks';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 interface IListProductProps {
   category: ICategory,
-  productId: string
+  productId: string,
+  cartId: RequestCookie | undefined
 }
 
 export default function ListProduct(props: IListProductProps) {
 
   const size = useWindowSize();
-  const { category, productId } = props;
+  const { category, productId, cartId } = props;
   const relatedProduct: IProduct[] = category.products.filter(item => item.id !== productId);
   return (
     <div className="product-item !py-5 lg:!py-10 my-10 lg:my-10">
@@ -36,7 +38,7 @@ export default function ListProduct(props: IListProductProps) {
           relatedProduct.map((item: IProduct) => {
             return (
               <SwiperSlide key={item.id}>
-                <ProductItem product={item}/>
+                <ProductItem product={item} cartId={cartId}/>
               </SwiperSlide>
             )
           })

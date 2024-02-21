@@ -3,11 +3,34 @@ import style from './style.module.scss'
 import Link from 'next/link';
 import { useState } from 'react';
 import { usePathname } from 'next/navigation'
+import { IHeaderProps } from '../common/header/header';
+import useSWR from 'swr';
+import { fetcher, formatVnd } from '@/utils';
+import CartItem from './cartItem';
 
-export function Cart() {
+export function Cart(props: IHeaderProps) {
 
+    const { cartId } = props;
+    const { data, error, mutate, isLoading } = useSWR<ICart>(`/api/cart/${cartId?.value}`, fetcher, {
+        revalidateIfStale: false,
+        revalidateOnFocus: false,
+        revalidateOnReconnect: false,
+        shouldRetryOnError: false
+    });
     const [open, setOpen] = useState(false);
     const pathname = usePathname();
+
+    const cartItem = data?.items;
+    let total = 0;
+
+    if (cartItem)
+        for (let i = 0; i < data.items.length; i++) {
+            const item = data.items[i];
+            const quantity = item.quantity;
+            const price = item.product.discount;
+
+            total += quantity * price;
+        }
 
     return (
         <Dropdown
@@ -18,19 +41,31 @@ export function Cart() {
             dropdownRender={() => (
                 <div style={{ maxWidth: 420, width: 'calc(100vw - 20px)' }} className='bg-white p-5'>
                     <h2 className='uppercase text-lg tracking-wide mb-2.5 text-center'>Giỏ hàng</h2>
-                    <div className='pt-2.5 pb-5 border-y mb-1'>
-                        <div className='flex flex-col items-center'>
-                            <svg style={{ stroke: 'var(--shop-color-main)' }} width="50" height="50" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4"
-                                fill="none" fillRule="evenodd"><circle stroke-linecap="square" cx="34" cy="60" r="6"></circle><circle stroke-linecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
-                            <p className='text-gray-500 mt-1'>Hiện chưa có sản phẩm</p>
-                        </div>
+                    <div className='overflow-scroll max-h-60'>
+                        {data?.items ?
+                            data?.items.map((item) => {
+                                return (
+                                    <div className='pt-2.5 pb-5 border-t' key={item.id}>
+                                        <CartItem cartItem={item} cartId={data.id} />
+                                    </div>
+                                )
+                            })
+                            :
+                            <div className='pt-2.5 pb-5 border-t mb-1'>
+                                <div className='flex flex-col items-center'>
+                                    <svg style={{ stroke: 'var(--shop-color-main)' }} width="50" height="50" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4"
+                                        fill="none" fillRule="evenodd"><circle strokeLinecap="square" cx="34" cy="60" r="6"></circle><circle strokeLinecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
+                                    <p className='text-gray-500 mt-1'>Hiện chưa có sản phẩm</p>
+                                </div>
+                            </div>
+                        }
                     </div>
-                    <div>
+                    <div className='border-t'>
                         <div className='flex justify-between items-center'>
                             <div className='uppercase py-2.5'>
                                 Tổng tiền:
                             </div>
-                            <div style={{ color: 'red' }} className='font-bold text-base'>0₫</div>
+                            <div style={{ color: 'red' }} className='font-bold text-base'>{formatVnd(total)}</div>
                         </div>
                         <Link
                             href='\cart'
@@ -43,9 +78,9 @@ export function Cart() {
             )}
         >
             <a onClick={() => {
-                if(pathname == '/cart'){
+                if (pathname == '/cart') {
                     setOpen(false)
-                }else{
+                } else {
                     setOpen(!open)
                 }
             }}>
@@ -58,7 +93,7 @@ export function Cart() {
                         </svg>
                     </span>
                     <div className={style['cart-counter']}>
-                        <span>0</span>
+                        <span>{isLoading ? 0 : data?.items?.length}</span>
                     </div>
                     <p className='hidden lg:block'>Giỏ hàng</p>
                 </Space>

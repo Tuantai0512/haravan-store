@@ -6,10 +6,12 @@ import { CheckboxValueType } from "antd/es/checkbox/Group";
 import { useState } from "react";
 import { getSort } from "./sort";
 import { getFilter } from "./filter";
+import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 interface IFilterSort {
   category?: ICategory;
   allCategory?: ICategory[];
+  cartId: RequestCookie | undefined;
 }
 
 const plainOptions = [
@@ -21,7 +23,7 @@ const plainOptions = [
 ];
 
 export default function FilterSort(props: IFilterSort) {
-  const { category, allCategory } = props;
+  const { category, allCategory, cartId } = props;
   const [sort, setSort] = useState('manual');
   const [filter, setFilter] = useState<CheckboxValueType[]>([]);
   const [modal1Open, setModal1Open] = useState(false);
@@ -157,14 +159,14 @@ export default function FilterSort(props: IFilterSort) {
           {
             productCategory?.map((item) => {
               return (
-                <li key={item.id}><ProductItem product={item} /></li>
+                <li key={item.id}><ProductItem product={item} cartId={cartId}/></li>
               )
             })
           }
           {
             productAllCategory?.map((item) => {
               return (
-                <li key={item.id}><ProductItem product={item} /></li>
+                <li key={item.id}><ProductItem product={item} cartId={cartId}/></li>
               )
             })
           }

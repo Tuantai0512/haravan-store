@@ -7,9 +7,9 @@ import { Auth } from '@/components/auth';
 import { Cart } from '@/components/cart';
 import style from './style.module.scss'
 import Link from 'next/link';
+import { IHeaderProps } from './header';
 
-
-export default function HeaderDesktop () {
+export default function HeaderDesktop (props: IHeaderProps) {
   return (
     <header style={{ height: '73px', top: 0, zIndex: 10 }} className='text-white hidden lg:flex items-center sticky'>
       <div className='container flex items-center'>
@@ -37,7 +37,7 @@ export default function HeaderDesktop () {
             </div>
           </div>
           <Auth />
-          <Cart />
+          <Cart cartId={props.cartId}/>
         </div>
       </div>
     </header>

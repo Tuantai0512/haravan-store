@@ -7,6 +7,7 @@ import ContainerOrder from '../containerOrder';
 import ProductDescription from '../description';
 import Gallery from '../gallery';
 import ListProduct from '../listProduct';
+import { cookies } from 'next/headers'
 
 type Props = {
   params: { slug: string }
@@ -30,7 +31,10 @@ export async function generateMetadata(
 export default async function ProductPage({ params }: { params: { slug: string } }) {
 
   const product: IProduct = await getData(`http://localhost:3000/api/product/${getIdFromSlug(params.slug)}`);
-  const productCategory: ICategory = await getData(`http://localhost:3000/api/category/${product.category.id}`)
+  const productCategory: ICategory = await getData(`http://localhost:3000/api/category/${product.category.id}`);
+
+  const cookieStore = cookies();
+  const cartId = cookieStore.get('cart_id');
 
   return (
     <div className='container'>
@@ -57,11 +61,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
           <Gallery galery={product.galery}/>
         </div>
         <div className='w-full lg:w-1/2'>
-          <ContainerOrder product={product}/>
+          <ContainerOrder product={product} cart={cartId}/>
           <ProductDescription product={product}/>
         </div>
       </div>
-      <ListProduct category={productCategory} productId={product.id}/>
+      <ListProduct category={productCategory} productId={product.id} cartId={cartId}/>
     </div>
   );
 }

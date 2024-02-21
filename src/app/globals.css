@@ -226,6 +226,16 @@ header .ant-input-group-addon button {
   }
 }
 
+.width-title-cart-item{
+  max-width: 80%;
+}
+
+@media screen and (min-width: 350px) and (max-width: 640px) {
+  .width-title-cart-item{
+    width: 180px;
+  }
+}
+
 /* Style gallery nav button */
 .image-gallery-svg {
   width: 40px !important;

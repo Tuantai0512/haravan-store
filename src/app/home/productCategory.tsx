@@ -2,9 +2,11 @@ import Link from 'next/link';
 import style from './style.module.scss'
 import ProductItem from '@/components/product-item';
 import { convertSlug } from '@/utils';
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 
 export interface IProductCategoryProps {
-    category: ICategory
+    category: ICategory,
+    cartId: RequestCookie | undefined
 }
 
 export function ProductCategory(props: IProductCategoryProps) {
@@ -20,7 +22,7 @@ export function ProductCategory(props: IProductCategoryProps) {
                     {
                         props.category.products.map((item) => {
                             return (
-                                <li key={item.id}><ProductItem product={item}/></li>
+                                <li key={item.id}><ProductItem product={item} cartId={props.cartId}/></li>
                             )
                         })
                     }
