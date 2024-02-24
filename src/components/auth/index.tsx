@@ -13,7 +13,7 @@ import { toast } from 'react-toastify';
 
 export function Auth() {
 
-    const { login, logout } = useAuth();
+    const { login, logout, profile } = useAuth();
     const { data, error, mutate } = useSWR<IAddressData>(`/addresses`, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
@@ -38,7 +38,7 @@ export function Auth() {
 
     return (
         <>
-            {fullName !== 'undefined undefined' && !error ?
+            {!error && profile ?
                 <Dropdown
                     className='ml-2 lg:ml-4 pl-2 lg:pl-4 border-l border-slate-200/[.1]'
                     dropdownRender={() => (
@@ -47,7 +47,7 @@ export function Auth() {
                                 <p className='uppercase text-lg font-medium'>Thông tin tài khoản</p>
                             </div>
                             <div className='mt-3'>
-                                <h3 className='mb-2.5 text-base font-bold'>{fullName}</h3>
+                                <h3 className='mb-2.5 text-base font-bold'>{fullName !== 'undefined undefined' ? fullName : profile.email}</h3>
                                 <ul className='list-disc pl-4'>
                                     <li className='py-1'>
                                         <Link href={'/account'}>Thông tin tài khoản</Link>
@@ -69,7 +69,7 @@ export function Auth() {
                         <Space direction='vertical' size={0} className='flex justify-center text-white'>
                             <p className='hidden lg:block text-xs'>Tài khoản</p>
                             <div className='flex items-center'>
-                                <p style={{ width: 73 }} className='hidden lg:block truncate'>{fullName} </p>
+                                <p style={{ width: 73 }} className='hidden lg:block truncate'>{fullName !== 'undefined undefined' ? fullName : profile.email} </p>
                                 <FontAwesomeIcon icon={faChevronDown} />
                             </div>
                         </Space>
@@ -146,7 +146,7 @@ export function Auth() {
                                 >Đăng nhập</button>
                                 <p className='mb-1 text-left text-xs'>Khách hàng mới?
                                     <Link
-                                        href='#'
+                                        href='/account/register'
                                         style={{ color: '#2962ff' }}
                                         target='_blank'
                                         rel="noopener noreferrer"

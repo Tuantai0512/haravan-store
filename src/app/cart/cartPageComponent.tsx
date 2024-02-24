@@ -5,13 +5,20 @@ import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import Link from 'next/link';
 import { fetcher, formatVnd } from '@/utils';
 import useSWR from 'swr';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { RootState } from '@/lib/store';
+import { useEffect, useState } from 'react';
+import { changeCartToken } from '@/lib/features/cart/cartSlice';
 
 export interface ICartPageComponentProps {
     cartId: RequestCookie | undefined
 }
 
 export default function CartPageComponent(props: ICartPageComponentProps) {
-    const { data, error, mutate, isLoading } = useSWR<ICart>(`/api/cart/${props.cartId?.value}`, fetcher, {
+    const { cartId } = props;
+    const cartRedux = useAppSelector((state: RootState) => state.cart.cartToken);
+    console.log(cartRedux);
+    const { data, error, mutate, isLoading } = useSWR<ICart>(`/api/cart/${cartRedux}`, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
@@ -52,7 +59,7 @@ export default function CartPageComponent(props: ICartPageComponentProps) {
                             <div className='px-4 py-2.5 bg-red-50 border border-red-100 text-red-500 mt-2.5 rounded'>Giỏ hàng của bạn hiện chưa đạt mức tối thiểu để thanh toán.</div>
                         </>
                     }
-                    <Link href={'#'} className='block text-center !bg-slate-500 uppercase w-full !text-white py-2.5 mt-2.5 font-bold rounded'>Thanh toán</Link>
+                    <Link href={'/checkout'} className={`block text-center ${total ? '!bg-red-500' : '!bg-slate-500 pointer-events-none'} uppercase w-full !text-white py-2.5 mt-2.5 font-bold rounded`}>Thanh toán</Link>
                 </div>
             </div>
         </div>

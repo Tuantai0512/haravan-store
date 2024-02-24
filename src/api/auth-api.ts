@@ -7,6 +7,11 @@ export const authAPI = {
             toast.error(`${error.response.data.message}`)
         });
     },
+    register(payload: ILoginForm){
+        return axiosClient.post('/users/register', payload).catch((error) => {
+            toast.error(`${error.response.data.message}`)
+        });
+    },
     auth(){
         return axiosClient.get('/users/auth')
     },

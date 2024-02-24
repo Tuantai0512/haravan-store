@@ -1,10 +1,7 @@
-import { fetcher } from '@/utils';
 import { Breadcrumb } from 'antd';
 import { Metadata } from 'next';
 import { cookies } from 'next/headers';
-import Link from 'next/link';
 import * as React from 'react';
-import CartPageForm from './cartForm';
 import CartPageComponent from './cartPageComponent';
 
 export const metadata: Metadata = {

@@ -11,6 +11,9 @@ import axiosClient from '@/api/axios-client';
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { changeCartToken } from '@/lib/features/cart/cartSlice';
+import { RootState } from '@/lib/store';
 
 export interface IProductItemProps {
     product: IProduct;
@@ -20,27 +23,40 @@ export interface IProductItemProps {
 export default function ProductItem(props: IProductItemProps) {
 
     const { product, cartId } = props;
+    const cartRedux = useAppSelector((state: RootState) => state.cart.cartToken);
+    const dispatch = useAppDispatch();
+
     const avatar = props.product.galery.find(item => item.avatar === true);
     const avatarUrl = avatar?.url;
 
     const handleCartBtn = async () => {
-        if (!cartId) {
-            await axiosClient.post('/api/cart', {
+        if (!cartRedux) {
+            const newCart: ICart = await axiosClient.post('/api/cart', {
                 fullName: null,
                 email: null,
                 phoneNumber: null
             });
+            const newCartId = await newCart.id;
+            await axiosClient.post('/api/cart-detail', {
+                cartId: newCartId,
+                productId: product.id,
+            }).then(() => {
+                toast.success('Thêm thành công sản phẩm vào giỏ hàng!');
+                dispatch(changeCartToken(newCartId))
+            }).catch((error) => {
+                toast.error('Thêm thất bại: ', error.response.data.message);
+            });
         } else {
             await axiosClient.post('/api/cart-detail', {
-                cartId: cartId.value,
+                cartId: cartRedux,
                 productId: product.id,
             }).then(() => {
                 toast.success('Thêm thành công sản phẩm vào giỏ hàng!');
             }).catch((error) => {
                 toast.error('Thêm thất bại: ', error.response.data.message);
             });
+            mutate(`/api/cart/${cartRedux}`)
         }
-        mutate(`/api/cart/${cartId?.value}`)
     }
 
     return (

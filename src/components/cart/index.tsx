@@ -1,17 +1,29 @@
+'use client'
 import { Dropdown, Space } from 'antd';
 import style from './style.module.scss'
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation'
 import { IHeaderProps } from '../common/header/header';
 import useSWR from 'swr';
 import { fetcher, formatVnd } from '@/utils';
 import CartItem from './cartItem';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { RootState } from '@/lib/store';
+import { changeCartToken } from '@/lib/features/cart/cartSlice';
 
 export function Cart(props: IHeaderProps) {
 
+    const cartRedux = useAppSelector((state: RootState) => state.cart.cartToken);
+    const dispatch = useAppDispatch();
     const { cartId } = props;
-    const { data, error, mutate, isLoading } = useSWR<ICart>(`/api/cart/${cartId?.value}`, fetcher, {
+    const cartToken = cartId?.value
+    useEffect(() => {
+        if(cartToken){
+            dispatch(changeCartToken(cartToken))
+        }
+    },[])
+    const { data, error, mutate, isLoading } = useSWR<ICart>(`/api/cart/${cartRedux}`, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
@@ -41,25 +53,25 @@ export function Cart(props: IHeaderProps) {
             dropdownRender={() => (
                 <div style={{ maxWidth: 420, width: 'calc(100vw - 20px)' }} className='bg-white p-5'>
                     <h2 className='uppercase text-lg tracking-wide mb-2.5 text-center'>Giỏ hàng</h2>
-                    <div className='overflow-scroll max-h-60'>
-                        {data?.items ?
-                            data?.items.map((item) => {
+                    {data?.items && data?.items.length != 0 ?
+                        <div className='overflow-scroll max-h-60'>
+                            {data?.items.map((item) => {
                                 return (
                                     <div className='pt-2.5 pb-5 border-t' key={item.id}>
                                         <CartItem cartItem={item} cartId={data.id} />
                                     </div>
                                 )
-                            })
-                            :
-                            <div className='pt-2.5 pb-5 border-t mb-1'>
-                                <div className='flex flex-col items-center'>
-                                    <svg style={{ stroke: 'var(--shop-color-main)' }} width="50" height="50" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4"
-                                        fill="none" fillRule="evenodd"><circle strokeLinecap="square" cx="34" cy="60" r="6"></circle><circle strokeLinecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
-                                    <p className='text-gray-500 mt-1'>Hiện chưa có sản phẩm</p>
-                                </div>
+                            })}
+                        </div>
+                        :
+                        <div className='pt-2.5 pb-5 border-t mb-1'>
+                            <div className='flex flex-col items-center'>
+                                <svg style={{ stroke: 'var(--shop-color-main)' }} width="50" height="50" viewBox="0 0 81 70"><g transform="translate(0 2)" stroke-width="4"
+                                    fill="none" fillRule="evenodd"><circle strokeLinecap="square" cx="34" cy="60" r="6"></circle><circle strokeLinecap="square" cx="67" cy="60" r="6"></circle><path d="M22.9360352 15h54.8070373l-4.3391876 30H30.3387146L19.6676025 0H.99560547"></path></g></svg>
+                                <p className='text-gray-500 mt-1'>Hiện chưa có sản phẩm</p>
                             </div>
-                        }
-                    </div>
+                        </div>
+                    }
                     <div className='border-t'>
                         <div className='flex justify-between items-center'>
                             <div className='uppercase py-2.5'>
@@ -78,7 +90,7 @@ export function Cart(props: IHeaderProps) {
             )}
         >
             <a onClick={() => {
-                if (pathname == '/cart') {
+                if (pathname == '/cart' || pathname == '/checkout') {
                     setOpen(false)
                 } else {
                     setOpen(!open)
@@ -93,7 +105,7 @@ export function Cart(props: IHeaderProps) {
                         </svg>
                     </span>
                     <div className={style['cart-counter']}>
-                        <span>{isLoading ? 0 : data?.items?.length}</span>
+                        <span>{isLoading || error ? 0 : data?.items?.length}</span>
                     </div>
                     <p className='hidden lg:block'>Giỏ hàng</p>
                 </Space>

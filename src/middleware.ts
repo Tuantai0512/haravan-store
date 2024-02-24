@@ -8,6 +8,10 @@ export function middleware(request: NextRequest) {
 
     const token = request.cookies.get('access_token');
 
+    if(path == '/account/register'){
+        return NextResponse.next();
+    }
+
     if(isLoginPath && token){
         return NextResponse.redirect(new URL('/account', request.url))
     }
@@ -15,6 +19,10 @@ export function middleware(request: NextRequest) {
     if(!isLoginPath && !token){
         return NextResponse.redirect(new URL('/account/login', request.url))
     }
+
+    /* if(path == '/checkout' && !cartId){
+        return NextResponse.redirect(new URL('/', request.url));
+    } */
 }
 
 // See "Matching Paths" below to learn more

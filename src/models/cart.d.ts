@@ -2,16 +2,24 @@ interface ICart {
     id: string;
     fullName?: string;
     email?: string;
-    phoneNumber: null,
-    address: null,
-    country: string,
-    province: string,
-    payment: null,
-    total: null,
+    phoneNumber?: string,
+    address?: string,
+    country?: string,
+    province?: string,
+    shipping?: string,
+    payment?: string,
+    total?: string,
     status: "pending" | "approved",
     items: {
         id: string,
         quantity: number,
         product: IProduct
     }[],
+}
+
+interface ICartForm {
+    fullName: string;
+    email: string;
+    phoneNumber: string;
+
 }

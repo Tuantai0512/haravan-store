@@ -4,15 +4,16 @@ interface IAddress {
     updatedAt?: string,
     firstName: string,
     lastName: string,
-    company: null | string,
-    address1: null | string,
-    address2: null | string,
+    company?: string,
+    address1?: string,
+    address2?: string,
     country: string,
     province: string,
-    phoneNumber: null | string,
+    phoneNumber?: string,
     default: boolean
 }
 
 interface IAddressData {
+    email: string;
     addresses: IAddress[]
 }

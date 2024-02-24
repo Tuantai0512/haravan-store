@@ -2,7 +2,7 @@ import * as React from 'react';
 import Image from "next/image"
 import EmptyImg from "../../../public/img/empty.jpg"
 import Link from 'next/link';
-import { formatVnd } from '@/utils';
+import { convertSlug, formatVnd } from '@/utils';
 import { useState } from 'react';
 import axiosClient from '@/api/axios-client';
 import { mutate } from 'swr';
@@ -59,7 +59,7 @@ export default function CartFormItem(props: ICartFormItemProps) {
                     </button>
                 </div>
                 <div className='px-4 width-title-cart-item'>
-                    <Link href="" className='limit-1-line !text-black text-sm lg:text-base'>{cartItem.product.title}</Link>
+                    <Link href={`/products/${convertSlug(cartItem.product.title)}-${cartItem.product.id}.html`} className='limit-1-line !text-black text-sm lg:text-base'>{cartItem.product.title}</Link>
                     <p>
                         <span className='mr-3 font-semibold text-slate-400 text-sm lg:text-base'>{formatVnd(cartItem.product.discount)}</span>
                         <del className='text-sm text-slate-400 text-xs lg:text-base'>{formatVnd(cartItem.product.price)}</del>

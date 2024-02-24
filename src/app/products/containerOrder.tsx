@@ -1,10 +1,14 @@
 'use client'
 import axiosClient from '@/api/axios-client';
+import { changeCartToken } from '@/lib/features/cart/cartSlice';
+import { useAppDispatch, useAppSelector } from '@/lib/hooks';
+import { RootState } from '@/lib/store';
 import { formatVnd, percentDiscount } from '@/utils';
 import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 import { mutate } from 'swr';
+import { useRouter } from 'next/navigation';
 
 export interface IContainerOrderProps {
     product: IProduct,
@@ -14,18 +18,32 @@ export interface IContainerOrderProps {
 export default function ContainerOrder(props: IContainerOrderProps) {
 
     const { product, cart } = props;
+    const router = useRouter();
+    const cartRedux = useAppSelector((state: RootState) => state.cart.cartToken);
+    const dispatch = useAppDispatch();
     const cartId = cart?.value;
     const [quantity, setQuantity] = useState(1);
     const handleCartBtn = async () => {
-        if (!cartId) {
-            await axiosClient.post('/api/cart', {
+        if (!cartRedux) {
+            const newCart: ICart = await axiosClient.post('/api/cart', {
                 fullName: null,
                 email: null,
                 phoneNumber: null
             });
+            const newCartId = await newCart.id;
+            await axiosClient.post('/api/cart-detail', {
+                cartId: newCartId,
+                productId: product.id,
+                quantity: quantity
+            }).then(() => {
+                toast.success('Thêm thành công sản phẩm vào giỏ hàng!');
+                dispatch(changeCartToken(newCartId))
+            }).catch((error) => {
+                toast.error('Thêm thất bại: ', error.response.data.message);
+            });
         } else {
             await axiosClient.post('/api/cart-detail', {
-                cartId: cartId,
+                cartId: cartRedux,
                 productId: product.id,
                 quantity: quantity
             }).then(() => {
@@ -34,7 +52,7 @@ export default function ContainerOrder(props: IContainerOrderProps) {
                 toast.error('Thêm thất bại: ', error.response.data.message);
             });
         }
-        mutate(`/api/cart/${cartId}`)
+        mutate(`/api/cart/${cartRedux}`)
     }
 
     return (
@@ -74,8 +92,14 @@ export default function ContainerOrder(props: IContainerOrderProps) {
                 >+</button>
             </div>
             <div className='flex gap-x-2.5 mt-2.5'>
-                <button className='button w-1/2 border border-red-600 text-red-600 hover:text-white hover:bg-red-600 h-10 uppercase font-semibold' onClick={() => handleCartBtn()}>Thêm vào giỏ</button>
-                <button className='button w-1/2 border border-red-500 hover:text-red-500 text-white bg-red-500 hover:bg-white h-10 uppercase font-semibold'>Mua ngay</button>
+                <button className='button w-1/2 border border-red-600 text-red-600 hover:text-white hover:bg-red-600 h-10 uppercase font-semibold' 
+                onClick={() => handleCartBtn()}>Thêm vào giỏ</button>
+                <button className='button w-1/2 border border-red-500 hover:text-red-500 text-white bg-red-500 hover:bg-white h-10 uppercase font-semibold'
+                onClick={() => {
+                    handleCartBtn();
+                    router.push('/cart');
+                }}
+                >Mua ngay</button>
             </div>
         </div>
     );
