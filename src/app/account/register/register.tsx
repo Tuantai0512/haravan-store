@@ -2,8 +2,6 @@
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/hooks";
-import { mutate } from "swr";
 import { authAPI } from "@/api";
 import { toast } from "react-toastify";
 
@@ -13,13 +11,15 @@ export interface IRegisterPageProps {
 export default function Register(props: IRegisterPageProps) {
 
     const form = useForm<IRegisterForm>();
+    const router = useRouter();
     const { register, handleSubmit, formState } = form;
     const { errors } = formState;
     const FormSubmit = async (data: IRegisterForm) => {
         try {
             if(data.password === data.confilmPassword){
                 await authAPI.register(data).then(() => {
-                    toast.success('Đăng ký thành công!')
+                    toast.success('Đăng ký thành công!');
+                    router.push('/account/login');
                 }).catch((error) => {
                     toast.error(`${error.response.data.message}`)
                 });

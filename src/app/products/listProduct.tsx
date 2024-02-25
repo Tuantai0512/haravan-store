@@ -38,7 +38,7 @@ export default function ListProduct(props: IListProductProps) {
           relatedProduct.map((item: IProduct) => {
             return (
               <SwiperSlide key={item.id}>
-                <ProductItem product={item} cartId={cartId}/>
+                <ProductItem product={item}/>
               </SwiperSlide>
             )
           })

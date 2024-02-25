@@ -48,7 +48,7 @@ export default async function Collections({ params }: { params: { category_slugn
                 className='!px-2 !py-2'
             />
             <h1 className='py-2 text-xl lg:text-2xl font-bold px-2'>{data.name}</h1>
-            <FilterSort category={data} cartId={cartId}/>
+            <FilterSort category={data} />
         </div>
     );
 }

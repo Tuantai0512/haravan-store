@@ -17,12 +17,11 @@ import { RootState } from '@/lib/store';
 
 export interface IProductItemProps {
     product: IProduct;
-    cartId: RequestCookie | undefined
 }
 
 export default function ProductItem(props: IProductItemProps) {
 
-    const { product, cartId } = props;
+    const { product } = props;
     const cartRedux = useAppSelector((state: RootState) => state.cart.cartToken);
     const dispatch = useAppDispatch();
 

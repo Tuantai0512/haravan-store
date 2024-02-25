@@ -22,7 +22,7 @@ export function ProductCategory(props: IProductCategoryProps) {
                     {
                         props.category.products.map((item) => {
                             return (
-                                <li key={item.id}><ProductItem product={item} cartId={props.cartId}/></li>
+                                <li key={item.id}><ProductItem product={item}/></li>
                             )
                         })
                     }

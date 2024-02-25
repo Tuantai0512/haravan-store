@@ -22,7 +22,7 @@ export function Cart(props: IHeaderProps) {
         if(cartToken){
             dispatch(changeCartToken(cartToken))
         }
-    },[])
+    },[cartToken, dispatch])
     const { data, error, mutate, isLoading } = useSWR<ICart>(`/api/cart/${cartRedux}`, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,

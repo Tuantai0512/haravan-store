@@ -11,7 +11,6 @@ import { RequestCookie } from "next/dist/compiled/@edge-runtime/cookies";
 interface IFilterSort {
   category?: ICategory;
   allCategory?: ICategory[];
-  cartId: RequestCookie | undefined;
 }
 
 const plainOptions = [
@@ -23,7 +22,7 @@ const plainOptions = [
 ];
 
 export default function FilterSort(props: IFilterSort) {
-  const { category, allCategory, cartId } = props;
+  const { category, allCategory } = props;
   const [sort, setSort] = useState('manual');
   const [filter, setFilter] = useState<CheckboxValueType[]>([]);
   const [modal1Open, setModal1Open] = useState(false);
@@ -105,10 +104,10 @@ export default function FilterSort(props: IFilterSort) {
           onOk={() => setModal1Open(false)}
           onCancel={() => setModal1Open(false)}
           footer={[
-            <Button onClick={() => setModal1Open(false)}>
+            <Button key='cancel' onClick={() => setModal1Open(false)}>
               Hủy
             </Button>,
-            <Button type="primary" onClick={() => setModal1Open(false)}>
+            <Button key="apply" type="primary" onClick={() => setModal1Open(false)}>
               Áp dụng
             </Button>
           ]}
@@ -159,14 +158,14 @@ export default function FilterSort(props: IFilterSort) {
           {
             productCategory?.map((item) => {
               return (
-                <li key={item.id}><ProductItem product={item} cartId={cartId}/></li>
+                <li key={item.id}><ProductItem product={item}/></li>
               )
             })
           }
           {
             productAllCategory?.map((item) => {
               return (
-                <li key={item.id}><ProductItem product={item} cartId={cartId}/></li>
+                <li key={item.id}><ProductItem product={item}/></li>
               )
             })
           }
