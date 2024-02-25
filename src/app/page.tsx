@@ -26,7 +26,7 @@ export default async function Home() {
         <ProductCategory category={MayInHoaDon} cartId={cartId}/>
         <ProductCategory category={MayQuetMaVach} cartId={cartId}/>
         <ProductCategory category={GiayIn} cartId={cartId}/>
-        <LatestBlog />
+        {/* <LatestBlog /> */}
       </div>
     </>
   )

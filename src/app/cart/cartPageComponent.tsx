@@ -11,13 +11,11 @@ import { useEffect, useState } from 'react';
 import { changeCartToken } from '@/lib/features/cart/cartSlice';
 
 export interface ICartPageComponentProps {
-    cartId: RequestCookie | undefined
+
 }
 
 export default function CartPageComponent(props: ICartPageComponentProps) {
-    const { cartId } = props;
     const cartRedux = useAppSelector((state: RootState) => state.cart.cartToken);
-    console.log(cartRedux);
     const { data, error, mutate, isLoading } = useSWR<ICart>(`/api/cart/${cartRedux}`, fetcher, {
         revalidateIfStale: false,
         revalidateOnFocus: false,

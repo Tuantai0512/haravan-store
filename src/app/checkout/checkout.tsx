@@ -23,14 +23,12 @@ import { RootState } from '@/lib/store';
 import { changeCartToken } from '@/lib/features/cart/cartSlice';
 
 export interface ICheckOutProps {
-  cartId: ResponseCookie | undefined
+
 }
 
 export default function CheckOut(props: ICheckOutProps) {
 
-  const { cartId } = props;
   const cartRedux = useAppSelector((state: RootState) => state.cart.cartToken);
-  console.log(cartRedux);
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [cart, setCart] = useState<ICart | null>(null);
@@ -40,7 +38,7 @@ export default function CheckOut(props: ICheckOutProps) {
       .then((data) => {
         setCart(data)
       })
-  }, []);
+  }, [cartRedux]);
   const cartItem = cart?.items;
   let total = 0;
 
@@ -95,10 +93,10 @@ export default function CheckOut(props: ICheckOutProps) {
   };
   return (
     <>
-      <div className='flex'>
-        <div className='w-3/5 pt-10 pr-16 border-r-2'>
+      <div className='flex flex-col-reverse lg:flex-row'>
+        <div className='lg:w-3/5 py-10 px-4 lg:px-0 lg:pr-16 border-r-2'>
           <div>
-            <h1 className='text-3xl'>Haravan Store</h1>
+            <h1 className='text-3xl hidden lg:block'>Haravan Store</h1>
             <Breadcrumb
               items={[
                 {
@@ -113,7 +111,7 @@ export default function CheckOut(props: ICheckOutProps) {
                   title: <p className='text-xs mt-1'>Thông tin giao hàng</p>,
                 },
               ]}
-              className='!py-2'
+              className='!py-2 hidden lg:flex'
             />
             <h2 className='text-xl font-semibold my-4'>Thông tin giao hàng</h2>
             <form action="" onSubmit={handleSubmit(FormSubmit)}>
@@ -132,8 +130,8 @@ export default function CheckOut(props: ICheckOutProps) {
               {errors.fullName && (
                 <label className='text-red-500 mb-2'>{errors.fullName.message}</label>
               )}
-              <div className='flex gap-x-4'>
-                <div className='relative mb-3 w-2/3'>
+              <div className='lg:flex gap-x-4'>
+                <div className='relative mb-3 lg:w-2/3'>
                   <input
                     type='text'
                     className='form-input w-full border pt-3.5 px-2.5 pb-1 rounded-md'
@@ -149,7 +147,7 @@ export default function CheckOut(props: ICheckOutProps) {
                   <label
                     className='form-label absolute top-0 leading-10 left-2.5 pointer-events-none origin-left'>Email</label>
                 </div>
-                <div className='relative mb-3 w-1/3'>
+                <div className='relative mb-3 lg:w-1/3'>
                   <input
                     type='text'
                     className='form-input w-full border pt-3.5 px-2.5 pb-1 rounded-md'
@@ -161,7 +159,6 @@ export default function CheckOut(props: ICheckOutProps) {
                   <label
                     className='form-label absolute top-0 leading-10 left-2.5 pointer-events-none origin-left'>Số điện thoại</label>
                 </div>
-
               </div>
               {errors.email && (
                 <label className='text-red-500 mb-2'>{errors.email.message}</label>
@@ -184,12 +181,12 @@ export default function CheckOut(props: ICheckOutProps) {
               {errors.address && (
                 <label className='text-red-500 mb-2'>{errors.address.message}</label>
               )}
-              <div className='flex gap-x-4'>
-                <div className="relative flex w-1/2">
+              <div className='lg:flex gap-x-4'>
+                <div className="relative flex lg:w-1/2">
                   <select
                     value={country}
                     {...register("country")}
-                    className="h-11 w-full px-1.5 pt-2"
+                    className="h-11 w-full px-1.5 pt-2 mb-3 lg:mb-0"
                     onChange={e => setCountry(e.target.value)}
                   >
                     <option value="Vietnam">Vietnam</option>
@@ -199,7 +196,7 @@ export default function CheckOut(props: ICheckOutProps) {
                   <label
                     className='cart form-label absolute leading-10 pointer-events-none origin-left'>Quốc gia</label>
                 </div>
-                <div className="relative flex w-1/2">
+                <div className="relative flex lg:w-1/2">
                   <select
                     className="h-11 w-full px-1.5 pt-2"
                     {...register("province")}
@@ -336,7 +333,7 @@ export default function CheckOut(props: ICheckOutProps) {
             </form>
           </div>
         </div>
-        <div className='w-2/5 pt-10 pl-11'>
+        <div className='lg:w-2/5 pt-10 lg:pl-11 px-4 lg:px-0'>
           <div className='pb-4 border-b-2'>
             {cart?.items.map((item) => {
               const avatar = item.product.galery.find(item => item.avatar === true);
@@ -386,6 +383,9 @@ export default function CheckOut(props: ICheckOutProps) {
               <span className='text-2xl'>{formatVnd(total + shippingMethod(shipping))}</span>
             </div>
           </div>
+        </div>
+        <div className='lg:hidden px-4 py-10 border-b-2'>
+          <h1 className='text-3xl'>Haravan Store</h1>
         </div>
       </div>
     </>
