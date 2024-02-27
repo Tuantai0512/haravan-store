@@ -10,7 +10,7 @@ export async function GET() {
     }
 
     const { value } = token;
-    let result = await fetch(`${process.env.URL_SERVER}/users/logout`, {
+    let result = await fetch(`${process.env.URL_SERVER}/api/v1/users/logout`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
