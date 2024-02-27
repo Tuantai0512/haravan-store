@@ -3,7 +3,7 @@ import Image from "next/image"
 import EmptyImg from "../../../public/img/empty.jpg"
 import Link from 'next/link';
 import { convertSlug, formatVnd } from '@/utils';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axiosClient from '@/api/axios-client';
 import { mutate } from 'swr';
 import { toast } from 'react-toastify';
@@ -22,6 +22,9 @@ export default function CartFormItem(props: ICartFormItemProps) {
     const avatar = cartItem.product.galery.find(item => item.avatar === true);
     const avatarUrl = avatar?.url;
     const [quantity, setQuantity] = useState(cartItem.quantity);
+    useEffect(() => {
+        setQuantity(cartItem.quantity)
+    },[cartItem.quantity]);
     const updateCart = async (id: string, quantity: number) => {
         await axiosClient.put(`/api/cart-detail/${id}`, {
             quantity: quantity
