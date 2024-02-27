@@ -14,7 +14,7 @@ export async function generateMetadata(
     const id = params.category_id
 
     // fetch data
-    const category = await fetch(`http://localhost:3000/api/category/${id}`).then((res) => res.json());
+    const category = await fetch(`${process.env.URL_PROXY}/api/category/${id}`).then((res) => res.json());
 
     return {
         title: `${category.name} - Haravan Store Clone`,
@@ -24,7 +24,7 @@ export async function generateMetadata(
 
 export default async function Collections({ params }: { params: { category_slugname: string, category_id: string } }) {
 
-    const res = await fetch(`http://localhost:3000/api/category/${params.category_id}`, { cache: 'no-store' });
+    const res = await fetch(`${process.env.URL_PROXY}/api/category/${params.category_id}`, { cache: 'no-store' });
     if (!res.ok) {
         // This will activate the closest `error.js` Error Boundary
         throw new Error('Failed to fetch data')

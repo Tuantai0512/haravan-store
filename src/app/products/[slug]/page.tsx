@@ -20,7 +20,7 @@ export async function generateMetadata(
   const id = getIdFromSlug(params.slug)
 
   // fetch data
-  const product: IProduct = await fetch(`http://localhost:3000/api/product/${id}`).then((res) => res.json());
+  const product: IProduct = await fetch(`${process.env.URL_PROXY}/api/product/${id}`).then((res) => res.json());
 
   return {
     title: `${product.title} - Haravan Store Clone`,
@@ -30,8 +30,8 @@ export async function generateMetadata(
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
 
-  const product: IProduct = await getData(`http://localhost:3000/api/product/${getIdFromSlug(params.slug)}`);
-  const productCategory: ICategory = await getData(`http://localhost:3000/api/category/${product.category.id}`);
+  const product: IProduct = await getData(`${process.env.URL_PROXY}/api/product/${getIdFromSlug(params.slug)}`);
+  const productCategory: ICategory = await getData(`${process.env.URL_PROXY}/api/category/${product.category.id}`);
 
   const cookieStore = cookies();
   const cartId = cookieStore.get('cart_id');

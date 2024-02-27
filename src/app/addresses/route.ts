@@ -10,7 +10,7 @@ export async function GET(request: NextRequest) {
     }
 
     const { value } = token;
-    let result = await fetch(`http://localhost:8080/api/v1/addresses`, {
+    let result = await fetch(`${process.env.URL_SERVER}/api/v1/addresses`, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
 
     const { value } = token;
     const req = await request.json();
-    let result = await fetch(`http://localhost:8080/api/v1/addresses`, {
+    let result = await fetch(`${process.env.URL_SERVER}/api/v1/addresses`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',

@@ -11,7 +11,7 @@ export async function PUT(request: NextRequest, context: { params: any }) {
 
     const { value } = token;
     const req = await request.json();
-    let result = await fetch(`http://localhost:8080/api/v1/addresses/${addressId}`, {
+    let result = await fetch(`${process.env.URL_SERVER}/api/v1/addresses/${addressId}`, {
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
@@ -34,7 +34,7 @@ export async function DELETE(request: NextRequest, context: { params: any }) {
     }
 
     const { value } = token;
-    let result = await fetch(`http://localhost:8080/api/v1/addresses/${addressId}`, {
+    let result = await fetch(`${process.env.URL_SERVER}/api/v1/addresses/${addressId}`, {
         method: 'DELETE',
         headers: {
             'Accept': 'application/json',

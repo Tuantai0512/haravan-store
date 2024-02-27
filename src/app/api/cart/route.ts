@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(request: NextRequest) {
     const req = await request.json();
-    let result = await fetch('http://localhost:8080/api/v1/cart', {
+    let result = await fetch(`${process.env.URL_SERVER}/api/v1/cart`, {
         method: 'POST',
         headers: {
             'Accept': 'application/json',
