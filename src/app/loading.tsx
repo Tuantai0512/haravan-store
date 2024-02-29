@@ -8,6 +8,7 @@ export default function Loading() {
                 <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
             </div></div>
             <p className='text-base text-center mb-5'>Đang tải, xin vui lòng chờ trong giây lát...</p>
+            <p className='text-base text-center mb-5'>Vì là server miễn phí, nên Website hiện đang hoạt động không ổn định, nên hãy tải lại trang sau 1 phút, chúng tôi sẽ khắc phục trong thời gian sớm nhất.</p>
         </div>
     )
 }
