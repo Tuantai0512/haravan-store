@@ -89,7 +89,10 @@ export default function CartFormItem(props: ICartFormItemProps) {
                         value={quantity}
                         min={0}
                         max={100}
-                        onChange={(e) => setQuantity(parseInt(e.target.value) | 1)}
+                        onChange={(e) => {
+                            setQuantity(parseInt(e.target.value) | 1);
+                            updateCart(cartItem.id, parseInt(e.target.value) | 1);
+                        }}
                         className='!w-8 !h-6 text-center text-xs w-max border mx-2' />
                     <button
                         style={{ lineHeight: '15px' }}
