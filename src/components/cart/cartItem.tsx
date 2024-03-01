@@ -80,8 +80,10 @@ export default function CartItem(props: IAppProps) {
                             min={0}
                             max={100}
                             onChange={(e) => {
-                                setQuantity(parseInt(e.target.value) | 1);
-                                updateCart(cartItem.id,parseInt(e.target.value) | 1);
+                                if(parseInt(e.target.value) >= 1 && Number.isInteger(parseInt(e.target.value))){
+                                    setQuantity(parseInt(e.target.value));
+                                    updateCart(cartItem.id,parseInt(e.target.value));
+                                }
                             }}
                             className='!w-14 !h-6 text-center w-max' />
                         <button
